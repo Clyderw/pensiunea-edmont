@@ -162,7 +162,7 @@ img {
 
 .hero {
   align-items: flex-end;
-  background-image: url("/images/hero.webp");
+  background-image: var(--hero-image);
   background-position: center 54%;
   background-size: cover;
   color: white;
@@ -485,7 +485,7 @@ h1 {
   align-items: center;
   background:
     linear-gradient(90deg, rgba(13, 47, 38, 0.75), rgba(13, 47, 38, 0.12)),
-    url("/images/hero.webp") center 58% / cover;
+    var(--hero-image) center 58% / cover;
   color: white;
   display: flex;
   min-height: 420px;

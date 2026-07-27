@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 type Language = "ro" | "en";
 
@@ -10,6 +10,8 @@ const phoneValue = "+40772210309";
 const whatsappUrl = "https://wa.me/40772210309";
 const facebookUrl = "https://www.facebook.com/PensiuneaEdmont/";
 const instagramUrl = "https://www.instagram.com/edmont.pensiunea/";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const assetPath = (path: string) => `${basePath}${path}`;
 
 const content = {
   ro: {
@@ -305,11 +307,15 @@ export default function Home() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <main>
+    <main
+      style={{
+        "--hero-image": `url("${assetPath("/images/hero.webp")}")`,
+      } as CSSProperties}
+    >
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Pensiunea EdMont">
           <span className="logo-frame">
-            <img src="/images/logo.webp" alt="EdMont" width="520" height="190" />
+            <img src={assetPath("/images/logo.webp")} alt="EdMont" width="520" height="190" />
           </span>
         </a>
 
@@ -398,7 +404,7 @@ export default function Home() {
 
         <div className="room-grid">
           <article className="room-card room-card-large">
-            <img src="/images/room-double.webp" alt={t.gallery.alt[1]} width="500" height="281" loading="lazy" />
+            <img src={assetPath("/images/room-double.webp")} alt={t.gallery.alt[1]} width="500" height="281" loading="lazy" />
             <div className="room-card-copy">
               <p className="room-meta">{t.rooms.double.meta}</p>
               <h3>{t.rooms.double.title}</h3>
@@ -406,7 +412,7 @@ export default function Home() {
             </div>
           </article>
           <article className="room-card">
-            <img src="/images/room-double-green.webp" alt={t.gallery.alt[2]} width="300" height="169" loading="lazy" />
+            <img src={assetPath("/images/room-double-green.webp")} alt={t.gallery.alt[2]} width="300" height="169" loading="lazy" />
             <div className="room-card-copy">
               <p className="room-meta">{t.rooms.triple.meta}</p>
               <h3>{t.rooms.triple.title}</h3>
@@ -451,7 +457,7 @@ export default function Home() {
 
       <section className="section events-section">
         <div className="events-photo">
-          <img src="/images/common-area.webp" alt={t.gallery.alt[5]} width="300" height="533" loading="lazy" />
+          <img src={assetPath("/images/common-area.webp")} alt={t.gallery.alt[5]} width="300" height="533" loading="lazy" />
         </div>
         <div className="events-copy">
           <p className="eyebrow light">{t.events.eyebrow}</p>
@@ -521,7 +527,7 @@ export default function Home() {
           {galleryImages.map((src, index) => (
             <figure key={src} className={`gallery-item gallery-item-${index + 1}`}>
               <img
-                src={src}
+                src={assetPath(src)}
                 alt={t.gallery.alt[index]}
                 loading={index === 0 ? "eager" : "lazy"}
                 width={index === 0 ? 1024 : 500}
