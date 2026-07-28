@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Language = "ro" | "en";
 
@@ -13,6 +13,7 @@ const facebookUrl = "https://www.facebook.com/PensiuneaEdmont/";
 const instagramUrl = "https://www.instagram.com/edmont.pensiunea/";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
+const fallbackBookingRating = 9.6;
 
 const content = {
   ro: {
@@ -29,7 +30,7 @@ const content = {
       eyebrow: "Pensiune de 3 stele · Pietroșița",
       title: ["Momente.", "Împreună.", "În natură."],
       intro:
-        "Un loc liniștit pentru familie, prieteni, retreaturi și întâlniri care merită trăite pe îndelete.",
+        "Retreaturi, prieteni, familie și întâlniri care merită trăite pe îndelete, în liniștea naturii.",
       booking: "Verifică disponibilitatea",
       bookingHint: "Rezervare securizată prin Booking.com",
       directHint: "Ai o întrebare?",
@@ -192,7 +193,7 @@ const content = {
       eyebrow: "3-star guesthouse · Pietroșița",
       title: ["Moments.", "Together.", "In nature."],
       intro:
-        "A peaceful place for family, friends, retreats and gatherings worth enjoying slowly.",
+        "Retreats, friends, family and gatherings worth enjoying slowly, surrounded by nature.",
       booking: "Check availability",
       bookingHint: "Secure booking via Booking.com",
       directHint: "Have a question?",
@@ -357,8 +358,58 @@ const galleryImages = [
 export default function Home() {
   const [language, setLanguage] = useState<Language>("ro");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bookingRating, setBookingRating] = useState(fallbackBookingRating);
+  const [showMobileBooking, setShowMobileBooking] = useState(false);
   const t = content[language];
   const closeMenu = () => setMenuOpen(false);
+  const formattedBookingRating = bookingRating.toLocaleString(
+    language === "ro" ? "ro-RO" : "en-GB",
+    { minimumFractionDigits: 1, maximumFractionDigits: 1 },
+  );
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch(assetPath("/booking-rating.json"), {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Rating unavailable");
+        return response.json();
+      })
+      .then((data: { score?: unknown }) => {
+        const score = Number(data.score);
+        if (Number.isFinite(score) && score >= 1 && score <= 10) {
+          setBookingRating(score);
+        }
+      })
+      .catch(() => {
+        // Keep the last verified score when the update endpoint is unavailable.
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const updateBookingBar = () => {
+      setShowMobileBooking(window.scrollY > 90);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateBookingBar);
+        ticking = true;
+      }
+    };
+
+    updateBookingBar();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <main>
@@ -446,20 +497,25 @@ export default function Home() {
               <small>{t.hero.bookingHint}</small>
             </div>
 
-            <div className="direct-line">
-              <span>{t.hero.directHint}</span>
-              <a href={`tel:${phoneValue}`}>{t.hero.call}: {phoneDisplay}</a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer">{t.hero.whatsapp}</a>
-            </div>
           </div>
 
-          <div className="hero-stats" aria-label="Pensiunea EdMont facts">
-            {t.hero.stats.map(([value, label]) => (
-              <div className="stat" key={label}>
-                <strong>{value}</strong>
-                <span>{label}</span>
+          <div className="hero-footer">
+            <div className="direct-line">
+              <span>{t.hero.directHint}</span>
+              <div className="direct-actions">
+                <a href={`tel:${phoneValue}`}>{t.hero.call}: {phoneDisplay}</a>
+                <a href={whatsappUrl} target="_blank" rel="noreferrer">{t.hero.whatsapp}</a>
               </div>
-            ))}
+            </div>
+
+            <div className="hero-stats" aria-label="Pensiunea EdMont facts">
+              {t.hero.stats.map(([value, label], index) => (
+                <div className="stat" key={label}>
+                  <span>{label}</span>
+                  <strong>{index === 2 ? formattedBookingRating : value}</strong>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -637,7 +693,7 @@ export default function Home() {
       <section className="reviews-section">
         <div className="review-score">
           <span>{t.reviews.label}</span>
-          <div><strong>{language === "ro" ? "9,6" : "9.6"}</strong><small>/ 10</small></div>
+          <div><strong>{formattedBookingRating}</strong><small>/ 10</small></div>
           <a href={bookingUrl} target="_blank" rel="noreferrer">
             Booking.com <span aria-hidden="true">↗</span>
           </a>
@@ -735,10 +791,14 @@ export default function Home() {
       </footer>
 
       <a
-        className="mobile-booking-bar"
+        className={showMobileBooking
+          ? "mobile-booking-bar is-visible"
+          : "mobile-booking-bar"}
         href={bookingUrl}
         target="_blank"
         rel="noreferrer"
+        aria-hidden={!showMobileBooking}
+        tabIndex={showMobileBooking ? 0 : -1}
       >
         <span>Booking.com</span>
         <strong>{t.mobileBooking}</strong>
