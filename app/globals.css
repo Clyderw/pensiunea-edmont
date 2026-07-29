@@ -1061,11 +1061,9 @@ h1 span {
 
 .map-label {
   background: var(--ivory);
-  left: 26px;
-  max-width: 360px;
+  max-width: none;
   padding: 21px 24px;
-  position: absolute;
-  top: 26px;
+  position: static;
   z-index: 2;
 }
 
@@ -1544,9 +1542,7 @@ footer {
   }
 
   .map-label {
-    left: 14px;
-    right: 14px;
-    top: 14px;
+    padding: 24px 20px;
   }
 
   .mobile-booking-bar strong {
