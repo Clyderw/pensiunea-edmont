@@ -1048,14 +1048,18 @@ h1 span {
 }
 
 .map-panel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   min-height: 780px;
+  overflow: hidden;
   position: relative;
 }
 
 .map-panel iframe {
+  display: block;
   filter: grayscale(0.18) saturate(0.85);
   height: 100%;
-  min-height: 780px;
+  min-height: 0;
   width: 100%;
 }
 
@@ -1332,9 +1336,12 @@ footer {
     grid-column: span 1;
   }
 
-  .map-panel,
+  .map-panel {
+    min-height: 620px;
+  }
+
   .map-panel iframe {
-    min-height: 540px;
+    min-height: 0;
   }
 
   footer {
