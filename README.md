@@ -1,2 +1,1 @@
-# pensiunea-edmont
-Одностраничный сайт Pensiunea EdMont Pietroșița — версия для семейного просмотра
+Guesthouse EdMont Pietroşița One-Page Website
