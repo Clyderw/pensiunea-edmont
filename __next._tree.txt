@@ -1,2 +1,3 @@
-:HL["/pensiunea-edmont/_next/static/chunks/0i538y6e4gbhg.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"Mp31DUWcWERrXtnuB1sI6"}
+:HL["/pensiunea-edmont/_next/static/chunks/1721y8-7k7ttz.css","style"]
+:HL["/pensiunea-edmont/_next/static/chunks/07vimz-d90n7j.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"xBevDWkwgwpxvYz3YCr5a"}

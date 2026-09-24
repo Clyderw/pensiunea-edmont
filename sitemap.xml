@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://edmont.ro</loc>
+<image:image>
+<image:loc>https://edmont.ro/images/hero.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/room-double.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/room-triple.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/kitchen.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/dining.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/terrace-view.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://edmont.ro/images/event-room.webp</image:loc>
+</image:image>
+<lastmod>2026-09-24T13:25:00.894Z</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1</priority>
+</url>
+</urlset>
