@@ -1,13 +1,9 @@
-name: Update Booking rating and deploy
+name: Deploy EdMont website
 
 on:
   push:
     branches:
       - source
-    paths-ignore:
-      - public/booking-rating.json
-  schedule:
-    - cron: "17 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -36,29 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Refresh Booking score
-        env:
-          BOOKING_API_TOKEN: ${{ secrets.BOOKING_API_TOKEN }}
-          BOOKING_AFFILIATE_ID: ${{ secrets.BOOKING_AFFILIATE_ID }}
-          BOOKING_ACCOMMODATION_ID: ${{ secrets.BOOKING_ACCOMMODATION_ID }}
-        run: node scripts/update-booking-rating.mjs
-
-      - name: Save a changed score
-        run: |
-          if git diff --quiet -- public/booking-rating.json; then
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/booking-rating.json
-          git commit -m "Update Booking rating"
-          git push origin HEAD:source
-
       - name: Build GitHub Pages
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /pensiunea-edmont
-        run: npm exec -- next build
+        run: npm exec -- next build --webpack
 
       - name: Publish gh-pages branch
         env:
