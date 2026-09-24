@@ -1,6 +1,9 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local WebP files are pre-sized and pre-compressed for static cPanel hosting */
+
 import { useEffect, useState } from "react";
+import "./booking-reviews.css";
 
 type Language = "ro" | "en";
 
@@ -13,7 +16,6 @@ const facebookUrl = "https://www.facebook.com/PensiuneaEdmont/";
 const instagramUrl = "https://www.instagram.com/edmont.pensiunea/";
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
-const fallbackBookingRating = 9.6;
 
 const content = {
   ro: {
@@ -39,8 +41,9 @@ const content = {
       stats: [
         ["9", "camere"],
         ["20", "oaspeți"],
-        ["9,6", "pe Booking"],
       ],
+      ratingLink: "Scor actual",
+      ratingLinkLabel: "Vezi scorul actual pe Booking.com",
     },
     about: {
       eyebrow: "Pensiunea EdMont",
@@ -142,7 +145,9 @@ const content = {
       title: "Liniște, curățenie și gazde primitoare",
       body:
         "Oaspeții evidențiază curățenia, camerele spațioase, priveliștea, micul dejun și ospitalitatea.",
-      label: "Scor pe Booking.com",
+      label: "Evaluări pe Booking.com",
+      ratingLink: "Scorul actual",
+      ratingCta: "Vezi pe Booking.com",
       cta: "Citește recenziile",
     },
     gallery: {
@@ -202,8 +207,9 @@ const content = {
       stats: [
         ["9", "rooms"],
         ["20", "guests"],
-        ["9.6", "on Booking"],
       ],
+      ratingLink: "Latest rating",
+      ratingLinkLabel: "See the latest rating on Booking.com",
     },
     about: {
       eyebrow: "Pensiunea EdMont",
@@ -305,7 +311,9 @@ const content = {
       title: "Peace, cleanliness and welcoming hosts",
       body:
         "Guests highlight the cleanliness, spacious rooms, hill views, breakfast and warm hospitality.",
-      label: "Score on Booking.com",
+      label: "Booking.com guest reviews",
+      ratingLink: "Latest rating",
+      ratingCta: "View on Booking.com",
       cta: "Read the reviews",
     },
     gallery: {
@@ -358,38 +366,13 @@ const galleryImages = [
 export default function Home() {
   const [language, setLanguage] = useState<Language>("ro");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bookingRating, setBookingRating] = useState(fallbackBookingRating);
   const [showMobileBooking, setShowMobileBooking] = useState(false);
   const t = content[language];
   const closeMenu = () => setMenuOpen(false);
-  const formattedBookingRating = bookingRating.toLocaleString(
-    language === "ro" ? "ro-RO" : "en-GB",
-    { minimumFractionDigits: 1, maximumFractionDigits: 1 },
-  );
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    fetch(assetPath("/booking-rating.json"), {
-      cache: "no-store",
-      signal: controller.signal,
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Rating unavailable");
-        return response.json();
-      })
-      .then((data: { score?: unknown }) => {
-        const score = Number(data.score);
-        if (Number.isFinite(score) && score >= 1 && score <= 10) {
-          setBookingRating(score);
-        }
-      })
-      .catch(() => {
-        // Keep the last verified score when the update endpoint is unavailable.
-      });
-
-    return () => controller.abort();
-  }, []);
+    document.documentElement.lang = language;
+  }, [language]);
 
   useEffect(() => {
     let ticking = false;
@@ -413,6 +396,9 @@ export default function Home() {
 
   return (
     <main>
+      <a className="skip-link" href="#despre">
+        {language === "ro" ? "Sari la conținut" : "Skip to content"}
+      </a>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Pensiunea EdMont">
           <img
@@ -423,7 +409,10 @@ export default function Home() {
           />
         </a>
 
-        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Primary">
+        <nav
+          className={menuOpen ? "main-nav is-open" : "main-nav"}
+          aria-label={language === "ro" ? "Navigare principală" : "Primary navigation"}
+        >
           <a href="#despre" onClick={closeMenu}>{t.nav.about}</a>
           <a href="#camere" onClick={closeMenu}>{t.nav.rooms}</a>
           <a href="#spatii" onClick={closeMenu}>{t.nav.spaces}</a>
@@ -508,13 +497,20 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-stats" aria-label="Pensiunea EdMont facts">
-              {t.hero.stats.map(([value, label], index) => (
+            <div
+              className="hero-stats"
+              aria-label={language === "ro" ? "Informații despre Pensiunea EdMont" : "Pensiunea EdMont facts"}
+            >
+              {t.hero.stats.map(([value, label]) => (
                 <div className="stat" key={label}>
                   <span>{label}</span>
-                  <strong>{index === 2 ? formattedBookingRating : value}</strong>
+                  <strong>{value}</strong>
                 </div>
               ))}
+              <a className="stat stat-reviews" href={bookingUrl} target="_blank" rel="noreferrer" aria-label={t.hero.ratingLinkLabel}>
+                <span>Booking.com</span>
+                <strong>{t.hero.ratingLink} <span aria-hidden="true">↗</span></strong>
+              </a>
             </div>
           </div>
         </div>
@@ -691,13 +687,11 @@ export default function Home() {
       </section>
 
       <section className="reviews-section">
-        <div className="review-score">
+        <a className="review-score review-link" href={bookingUrl} target="_blank" rel="noreferrer" aria-label={t.hero.ratingLinkLabel}>
           <span>{t.reviews.label}</span>
-          <div><strong>{formattedBookingRating}</strong><small>/ 10</small></div>
-          <a href={bookingUrl} target="_blank" rel="noreferrer">
-            Booking.com <span aria-hidden="true">↗</span>
-          </a>
-        </div>
+          <strong>{t.reviews.ratingLink}</strong>
+          <span className="review-link-action">{t.reviews.ratingCta} <span aria-hidden="true">↗</span></span>
+        </a>
         <div className="review-copy">
           <p className="eyebrow eyebrow-light">{t.reviews.eyebrow}</p>
           <h2>{t.reviews.title}</h2>
@@ -770,7 +764,7 @@ export default function Home() {
         <div className="map-panel">
           <div className="map-label">
             <p>{t.contact.locationTitle}</p>
-            <span>{t.contact.addressPlaceholder}</span>
+            <address>{t.contact.addressPlaceholder}</address>
           </div>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2812.192248921766!2d25.427684273426642!3d45.18320445214751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b31d7239c08f15%3A0x5d9b5e0e2352f6d1!2sPensiunea%20EdMont!5e0!3m2!1sru!2s!4v1785167920506!5m2!1sru!2s"

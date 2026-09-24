@@ -51,6 +51,34 @@ img {
   max-width: 100%;
 }
 
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link {
+  background: var(--ivory);
+  color: var(--green-950);
+  font-size: 13px;
+  font-weight: 800;
+  left: 18px;
+  padding: 12px 16px;
+  position: fixed;
+  top: 10px;
+  transform: translateY(-150%);
+  transition: transform 120ms ease;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 h1,
 h2,
 h3,
@@ -390,10 +418,12 @@ h1 span {
 .stat strong {
   font-family: var(--serif);
   font-size: 34px;
+  font-variant-numeric: tabular-nums;
   font-weight: 400;
+  min-height: 39px;
 }
 
-.stat span {
+.stat > span {
   color: rgba(255, 255, 255, 0.68);
   font-size: 9px;
   letter-spacing: 0.12em;
@@ -866,6 +896,7 @@ h1 span {
 .review-score strong {
   font-family: var(--serif);
   font-size: clamp(78px, 10vw, 135px);
+  font-variant-numeric: tabular-nums;
   font-weight: 400;
   letter-spacing: -0.08em;
   line-height: 0.8;
@@ -1078,9 +1109,46 @@ h1 span {
   margin-bottom: 6px;
 }
 
-.map-label span {
+.map-label address {
   color: var(--muted);
+  font-style: normal;
   font-size: 11px;
+  line-height: 1.5;
+}
+
+.rating-skeleton {
+  animation: rating-shimmer 1.25s ease-in-out infinite;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.12) 20%,
+      rgba(255, 255, 255, 0.32) 42%,
+      rgba(255, 255, 255, 0.12) 64%
+    );
+  background-size: 220% 100%;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.rating-skeleton-compact {
+  height: 32px;
+  width: 54px;
+}
+
+.rating-skeleton-large {
+  height: clamp(64px, 8vw, 104px);
+  width: clamp(112px, 15vw, 190px);
+}
+
+@keyframes rating-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
 }
 
 footer {
@@ -1455,7 +1523,7 @@ footer {
     font-size: 28px;
   }
 
-  .stat span {
+  .stat > span {
     font-size: 8px;
     order: -1;
   }
@@ -1601,6 +1669,8 @@ footer {
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

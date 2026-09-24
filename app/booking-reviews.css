@@ -1,0 +1,59 @@
+.hero-stats .stat-reviews {
+  color: white;
+  min-width: 0;
+}
+
+.hero-stats .stat-reviews strong {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--sans);
+  font-size: clamp(13px, 1.3vw, 16px);
+  font-weight: 700;
+  gap: 3px 8px;
+  line-height: 1.35;
+}
+
+.hero-stats .stat-reviews strong span {
+  color: inherit;
+  font-size: 1.25em;
+  letter-spacing: normal;
+  order: initial;
+}
+
+.review-score.review-link {
+  color: white;
+  min-width: 0;
+}
+
+.review-score.review-link strong {
+  font-size: clamp(34px, 4vw, 54px);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  margin: 28px 0;
+}
+
+.review-score.review-link .review-link-action {
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  letter-spacing: normal;
+  padding-top: 17px;
+  text-transform: none;
+}
+
+.stat-reviews:hover strong,
+.review-link:hover .review-link-action {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.stat-reviews:focus-visible,
+.review-link:focus-visible {
+  outline: 2px solid white;
+  outline-offset: -5px;
+}
