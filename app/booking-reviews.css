@@ -4,13 +4,10 @@
 }
 
 .hero-stats .stat-reviews strong {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
   font-family: var(--sans);
   font-size: clamp(13px, 1.3vw, 16px);
   font-weight: 700;
-  gap: 3px 8px;
   line-height: 1.35;
 }
 
