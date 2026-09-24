@@ -42,7 +42,7 @@ const content = {
         ["9", "camere"],
         ["20", "oaspeți"],
       ],
-      ratingLink: "Scor actual",
+      ratingLink: "Vezi scorul actual",
       ratingLinkLabel: "Vezi scorul actual pe Booking.com",
     },
     about: {
@@ -146,8 +146,8 @@ const content = {
       body:
         "Oaspeții evidențiază curățenia, camerele spațioase, priveliștea, micul dejun și ospitalitatea.",
       label: "Evaluări pe Booking.com",
-      ratingLink: "Scorul actual",
-      ratingCta: "Vezi pe Booking.com",
+      ratingLink: "Vezi scorul actual",
+      ratingCta: "Deschide Booking.com",
       cta: "Citește recenziile",
     },
     gallery: {
@@ -208,7 +208,7 @@ const content = {
         ["9", "rooms"],
         ["20", "guests"],
       ],
-      ratingLink: "Latest rating",
+      ratingLink: "View latest rating",
       ratingLinkLabel: "See the latest rating on Booking.com",
     },
     about: {
@@ -312,8 +312,8 @@ const content = {
       body:
         "Guests highlight the cleanliness, spacious rooms, hill views, breakfast and warm hospitality.",
       label: "Booking.com guest reviews",
-      ratingLink: "Latest rating",
-      ratingCta: "View on Booking.com",
+      ratingLink: "View latest rating",
+      ratingCta: "Open Booking.com",
       cta: "Read the reviews",
     },
     gallery: {
@@ -509,7 +509,7 @@ export default function Home() {
               ))}
               <a className="stat stat-reviews" href={bookingUrl} target="_blank" rel="noreferrer" aria-label={t.hero.ratingLinkLabel}>
                 <span>Booking.com</span>
-                <strong>{t.hero.ratingLink} <span aria-hidden="true">↗</span></strong>
+                <strong>{t.hero.ratingLink}{"\u00a0"}<span aria-hidden="true">↗</span></strong>
               </a>
             </div>
           </div>
