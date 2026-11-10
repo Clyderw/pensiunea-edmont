@@ -291,14 +291,9 @@ export default function Home() {
             ))}
           </ul>
           <p className="events-note">{t.events.note}</p>
-          <div className="events-actions">
-            <button className="btn btn-light" type="button" onClick={() => chooseStay("whole")}>
-              {t.events.cta}
-            </button>
-            <a className="text-link text-link-light" href={whatsappLink()} target="_blank" rel="noreferrer">
-              {t.events.whatsapp}
-            </a>
-          </div>
+          <button className="btn btn-light" type="button" onClick={() => chooseStay("whole")}>
+            {t.events.cta}
+          </button>
         </div>
       </section>
 
@@ -376,19 +371,19 @@ export default function Home() {
 
             <div className="direct">
               <h3>{t.booking.direct.title}</h3>
-              <a href={`tel:${contact.phoneValue}`}>
-                <PhoneIcon />
-                <span>{t.booking.direct.call}</span>
+              <div className="direct-phone">
                 <strong>{contact.phoneDisplay}</strong>
-              </a>
-              <a href={whatsappLink()} target="_blank" rel="noreferrer">
-                <ChatIcon />
-                <span>{t.booking.direct.whatsapp}</span>
-                <strong>{contact.phoneDisplay}</strong>
-              </a>
-              <a href={`mailto:${contact.email}`}>
+                <div>
+                  <a className="btn btn-secondary btn-small" href={`tel:${contact.phoneValue}`}>
+                    <PhoneIcon /> {t.booking.direct.call}
+                  </a>
+                  <a className="btn btn-secondary btn-small" href={whatsappLink()} target="_blank" rel="noreferrer">
+                    <ChatIcon /> {t.booking.direct.whatsapp}
+                  </a>
+                </div>
+              </div>
+              <a className="direct-mail" href={`mailto:${contact.email}`}>
                 <MailIcon />
-                <span>{t.booking.direct.email}</span>
                 <strong>{contact.email}</strong>
               </a>
             </div>
@@ -423,7 +418,10 @@ export default function Home() {
       </section>
 
       <footer className="site-footer">
-        <img src={assetPath("/images/logo-light.webp")} alt="" width="977" height="366" loading="lazy" />
+        <span className="footer-logo">
+          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="977" height="366" loading="lazy" />
+          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="977" height="366" loading="lazy" />
+        </span>
         <span>{t.footer}</span>
         <span>© {new Date().getFullYear()}</span>
       </footer>

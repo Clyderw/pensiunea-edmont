@@ -127,7 +127,6 @@ export const content = {
       note:
         "Când rezervi toată pensiunea, echipamentele și spațiile sunt incluse, fără costuri în plus.",
       cta: "Cere ofertă pentru eveniment",
-      whatsapp: "Sau scrie-ne pe WhatsApp",
       alt: "Sala interioară pentru evenimente și întâlniri la EdMont",
     },
     amenities: {
@@ -165,7 +164,7 @@ export const content = {
     booking: {
       title: "Rezervă direct la EdMont",
       intro:
-        "Completează cererea și o trimitem imediat gazdelor pe WhatsApp. Rezervarea este confirmată după răspunsul lor.",
+        "Completează cererea și o trimitem imediat gazdelor. Rezervarea este confirmată după răspunsul lor.",
       formLabel: "Cerere de rezervare",
       arrival: "Sosire",
       departure: "Plecare",
@@ -205,7 +204,7 @@ export const content = {
       submit: "Trimite cererea",
       sending: "Se trimite...",
       privacy:
-        "Folosim datele tale doar ca să-ți răspundem la cerere. Le trimitem gazdelor pe WhatsApp și pe email.",
+        "Folosim datele tale doar ca să-ți răspundem la cerere. Cererea ajunge doar la gazde, prin email sau WhatsApp.",
       recaptcha: {
         text: "Formularul este protejat de Google reCAPTCHA:",
         privacy: "confidențialitate",
@@ -237,12 +236,12 @@ export const content = {
         title: "Cum funcționează",
         items: [
           ["Trimiți cererea", "Durează un minut. Nu plătești nimic acum."],
-          ["Gazdele verifică perioada", "Primesc cererea pe WhatsApp și se uită dacă perioada e liberă."],
+          ["Gazdele verifică perioada", "Primesc cererea imediat și se uită dacă perioada e liberă."],
           ["Primești răspunsul", "Îți scriem sau te sunăm cu prețul și detaliile. Apoi rezervarea e confirmată."],
         ],
       },
       direct: {
-        title: "Preferi să vorbim?",
+        title: "Contact direct",
         call: "Sună",
         whatsapp: "WhatsApp",
         email: "Email",
@@ -381,7 +380,6 @@ export const content = {
       ],
       note: "When you book the whole guesthouse, the equipment and all spaces are included at no extra cost.",
       cta: "Ask for an event quote",
-      whatsapp: "Or message us on WhatsApp",
       alt: "Indoor event and meeting space at EdMont",
     },
     amenities: {
@@ -419,7 +417,7 @@ export const content = {
     booking: {
       title: "Book directly with EdMont",
       intro:
-        "Fill in the request and we send it straight to the hosts on WhatsApp. Your booking is confirmed once they reply.",
+        "Fill in the request and we send it straight to the hosts. Your booking is confirmed once they reply.",
       formLabel: "Booking request",
       arrival: "Arrival",
       departure: "Departure",
@@ -459,7 +457,7 @@ export const content = {
       submit: "Send request",
       sending: "Sending...",
       privacy:
-        "We use your details only to reply to your request. We send them to the hosts on WhatsApp and by email.",
+        "We use your details only to reply to your request. It goes only to the hosts, by email or WhatsApp.",
       recaptcha: {
         text: "This form is protected by Google reCAPTCHA:",
         privacy: "privacy",
@@ -491,12 +489,12 @@ export const content = {
         title: "How it works",
         items: [
           ["You send the request", "It takes a minute. You don't pay anything now."],
-          ["The hosts check your dates", "They get the request on WhatsApp and check availability."],
+          ["The hosts check your dates", "They get the request right away and check availability."],
           ["You get a reply", "We message or call you with the price and details. Then your booking is confirmed."],
         ],
       },
       direct: {
-        title: "Rather talk to us?",
+        title: "Contact us directly",
         call: "Call",
         whatsapp: "WhatsApp",
         email: "Email",
