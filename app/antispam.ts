@@ -1,6 +1,7 @@
 // Anti-spam for the booking form.
 // 1. Proof of work: find the number whose SHA-256(salt + number) equals the server's
-//    challenge. About a second in a browser, so it runs while the guest types.
+//    challenge. It starts when the guest begins filling in the form and runs in a
+//    Web Worker, so page loading and scrolling are not slowed down.
 // 2. Optional Google reCAPTCHA v3, used only when the server config has keys.
 
 export type PowSolution = {
@@ -22,24 +23,84 @@ type Grecaptcha = {
   execute(key: string, options: { action: string }): Promise<string>;
 };
 
-const toHex = (buffer: ArrayBuffer) =>
-  Array.from(new Uint8Array(buffer), (byte) => byte.toString(16).padStart(2, "0")).join("");
+type Task = { salt: string; challenge: string; maxnumber: number };
+
+// The same search runs in a Web Worker (off the main thread) or, as a fallback,
+// on the page itself with a pause between batches so scrolling stays smooth.
+async function search({ salt, challenge, maxnumber }: Task, pause?: () => Promise<void>) {
+  const target = new Uint8Array((challenge.match(/../g) ?? []).map((hex) => parseInt(hex, 16)));
+  const matches = (buffer: ArrayBuffer) => {
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < target.length; i += 1) if (bytes[i] !== target[i]) return false;
+    return true;
+  };
+  const encoder = new TextEncoder();
+  for (let start = 0; start <= maxnumber; start += 1000) {
+    const end = Math.min(start + 1000, maxnumber + 1);
+    const work: Promise<ArrayBuffer>[] = [];
+    for (let number = start; number < end; number += 1) {
+      work.push(crypto.subtle.digest("SHA-256", encoder.encode(`${salt}${number}`)));
+    }
+    const found = (await Promise.all(work)).findIndex(matches);
+    if (found >= 0) return start + found;
+    if (pause) await pause();
+  }
+  return -1;
+}
+
+// Plain string on purpose: the bundler must not rewrite the code that runs inside the worker.
+const workerSource = `
+self.onmessage = async (event) => {
+  const { salt, challenge, maxnumber } = event.data;
+  const target = new Uint8Array((challenge.match(/../g) || []).map((hex) => parseInt(hex, 16)));
+  const matches = (buffer) => {
+    const bytes = new Uint8Array(buffer);
+    for (let i = 0; i < target.length; i += 1) if (bytes[i] !== target[i]) return false;
+    return true;
+  };
+  const encoder = new TextEncoder();
+  for (let start = 0; start <= maxnumber; start += 1000) {
+    const end = Math.min(start + 1000, maxnumber + 1);
+    const work = [];
+    for (let number = start; number < end; number += 1) {
+      work.push(crypto.subtle.digest("SHA-256", encoder.encode(salt + number)));
+    }
+    const found = (await Promise.all(work)).findIndex(matches);
+    if (found >= 0) { self.postMessage(start + found); return; }
+  }
+  self.postMessage(-1);
+};`;
+
+function searchInWorker(task: Task) {
+  return new Promise<number>((resolve, reject) => {
+    const url = URL.createObjectURL(new Blob([workerSource], { type: "text/javascript" }));
+    const worker = new Worker(url);
+    const finish = () => {
+      worker.terminate();
+      URL.revokeObjectURL(url);
+    };
+    worker.onmessage = (event) => {
+      finish();
+      resolve(Number(event.data));
+    };
+    worker.onerror = () => {
+      finish();
+      reject(new Error("worker failed"));
+    };
+    worker.postMessage(task);
+  });
+}
 
 async function solve(challenge: Omit<PowSolution, "number">): Promise<PowSolution | null> {
   if (!challenge?.salt || !challenge?.challenge || !window.crypto?.subtle) return null;
-  const encoder = new TextEncoder();
-  const batch = 1000;
-  for (let start = 0; start <= challenge.maxnumber; start += batch) {
-    const end = Math.min(start + batch, challenge.maxnumber + 1);
-    const work: Promise<ArrayBuffer>[] = [];
-    for (let number = start; number < end; number += 1) {
-      work.push(crypto.subtle.digest("SHA-256", encoder.encode(`${challenge.salt}${number}`)));
-    }
-    const hashes = await Promise.all(work);
-    const found = hashes.findIndex((hash) => toHex(hash) === challenge.challenge);
-    if (found >= 0) return { ...challenge, number: start + found };
+  const task = { salt: challenge.salt, challenge: challenge.challenge, maxnumber: challenge.maxnumber };
+  let number: number;
+  try {
+    number = await searchInWorker(task);
+  } catch {
+    number = await search(task, () => new Promise((resolve) => setTimeout(resolve, 0)));
   }
-  return null;
+  return number >= 0 ? { ...challenge, number } : null;
 }
 
 export async function prepareGuard(endpoint: string): Promise<Guard> {

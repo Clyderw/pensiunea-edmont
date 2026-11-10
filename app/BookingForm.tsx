@@ -43,13 +43,18 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
 
   useEffect(() => {
     openedAt.current = Date.now();
+  }, []);
+
+  // Anti-spam work starts only when the guest begins filling in the form,
+  // so it never slows down the first load of the page.
+  function startGuard() {
+    if (guardRef.current) return;
     const guard = prepareGuard(endpoint);
     guardRef.current = guard;
-    guard.then((result) => setRecaptchaKey(result.recaptchaKey));
-  }, [endpoint]);
-
-  function warmUpRecaptcha() {
-    if (recaptchaKey) loadRecaptcha(recaptchaKey).catch(() => undefined);
+    guard.then((result) => {
+      setRecaptchaKey(result.recaptchaKey);
+      if (result.recaptchaKey) loadRecaptcha(result.recaptchaKey).catch(() => undefined);
+    });
   }
 
   useEffect(() => {
@@ -127,7 +132,8 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
     setErrors({});
     setStatus("idle");
     openedAt.current = Date.now();
-    guardRef.current = prepareGuard(endpoint);
+    guardRef.current = null;
+    startGuard();
   }
 
   if (status === "sent") {
@@ -151,7 +157,7 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
   }
 
   return (
-    <form className="booking-form" aria-label={t.formLabel} noValidate onSubmit={handleSubmit} onFocus={warmUpRecaptcha}>
+    <form className="booking-form" aria-label={t.formLabel} noValidate onSubmit={handleSubmit} onFocus={startGuard} onPointerDown={startGuard}>
       {status === "failed" && (
         <div className="booking-result is-failure" ref={resultRef} tabIndex={-1} role="alert">
           <h3>{t.failure.title}</h3>

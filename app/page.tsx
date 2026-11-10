@@ -14,6 +14,31 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const assetPath = (path: string) => `${basePath}${path}`;
 const endpoint = `${basePath}/api/rezervare.php`;
 
+// Smaller copies (name-640.webp, name-960.webp) let phones download a lighter photo.
+const photoWidths: Record<string, number[]> = {
+  hero: [640, 960, 1200],
+  "room-double": [640, 960, 1280],
+  "room-view": [640, 960, 1125],
+  "room-green": [640, 960, 1280],
+  kitchen: [640, 960, 1280],
+  dining: [640, 960, 1280],
+  "dining-detail": [640, 960, 1280],
+  balcony: [640, 720],
+  "terrace-view": [640, 1024],
+  "event-room": [640, 1024],
+};
+
+function photo(path: string) {
+  const name = path.replace("/images/", "").replace(".webp", "");
+  const widths = photoWidths[name];
+  if (!widths) return { src: assetPath(path) };
+  const full = widths[widths.length - 1];
+  const srcSet = widths
+    .map((width) => `${assetPath(width === full ? path : `/images/${name}-${width}.webp`)} ${width}w`)
+    .join(", ");
+  return { src: assetPath(path), srcSet };
+}
+
 export default function Home() {
   const [language, setLanguage] = useState<Language>("ro");
   const [theme, setTheme] = useState<Theme>("light");
@@ -85,8 +110,8 @@ export default function Home() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Pensiunea EdMont" onClick={closeMenu}>
-          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="977" height="366" />
-          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="977" height="366" />
+          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="480" height="180" />
+          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="480" height="180" />
         </a>
 
         <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label={t.nav.label}>
@@ -188,7 +213,8 @@ export default function Home() {
         <div className="room-grid">
           <article className="room">
             <img
-              src={assetPath("/images/room-double.webp")}
+              {...photo("/images/room-double.webp")}
+              sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) 50vw, 600px"
               alt={t.rooms.double.alt}
               width="1280"
               height="853"
@@ -227,7 +253,8 @@ export default function Home() {
 
         <article className="whole-house">
           <img
-            src={assetPath("/images/dining-detail.webp")}
+            {...photo("/images/dining-detail.webp")}
+            sizes="(max-width: 920px) calc(100vw - 32px), 560px"
             alt={t.rooms.whole.alt}
             width="1280"
             height="853"
@@ -253,7 +280,8 @@ export default function Home() {
           {t.shared.items.map((item) => (
             <figure className="shared-item" key={item.title}>
               <img
-                src={assetPath(item.image)}
+                {...photo(item.image)}
+                sizes="(max-width: 640px) 82vw, (max-width: 920px) 50vw, 400px"
                 alt={item.alt}
                 width="1280"
                 height="853"
@@ -273,7 +301,8 @@ export default function Home() {
       <section className="events" id="evenimente">
         <div className="events-media">
           <img
-            src={assetPath("/images/event-room.webp")}
+            {...photo("/images/event-room.webp")}
+            sizes="(max-width: 920px) 100vw, 50vw"
             alt={t.events.alt}
             width="1280"
             height="853"
@@ -318,7 +347,8 @@ export default function Home() {
           {galleryImages.map((src, index) => (
             <figure className={`gallery-item gallery-item-${index + 1}`} key={src}>
               <img
-                src={assetPath(src)}
+                {...photo(src)}
+                sizes={index === 0 ? "(max-width: 640px) 84vw, (max-width: 920px) 100vw, 720px" : "(max-width: 640px) 84vw, (max-width: 920px) 50vw, 620px"}
                 alt={t.gallery.alt[index]}
                 width="1280"
                 height="900"
@@ -419,8 +449,8 @@ export default function Home() {
 
       <footer className="site-footer">
         <span className="footer-logo">
-          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="977" height="366" loading="lazy" />
-          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="977" height="366" loading="lazy" />
+          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="480" height="180" loading="lazy" />
+          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="480" height="180" loading="lazy" />
         </span>
         <span>{t.footer}</span>
         <span>© {new Date().getFullYear()}</span>
