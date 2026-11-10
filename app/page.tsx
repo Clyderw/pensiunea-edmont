@@ -160,13 +160,17 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-media">
-          <img
-            src={assetPath("/images/hero.webp")}
-            alt={t.gallery.alt[0]}
-            width="1200"
-            height="900"
-            fetchPriority="high"
-          />
+          {/* Phones get a crop of the middle of the photo without the sky: same look, a third of the weight. */}
+          <picture>
+            <source media="(max-width: 920px)" srcSet={assetPath("/images/hero-mobile.webp")} width="720" height="702" />
+            <img
+              src={assetPath("/images/hero.webp")}
+              alt={t.gallery.alt[0]}
+              width="1200"
+              height="900"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
         <div className="hero-copy">
           <h1>
