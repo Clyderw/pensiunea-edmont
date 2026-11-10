@@ -41,18 +41,11 @@ export const content = {
       closeMenu: "Închide meniul",
     },
     hero: {
-      stars: "Pensiune de trei stele",
-      kicker: "Pensiune de trei stele în Pietroșița, Dâmbovița",
       title: ["Momente.", "Împreună.", "În natură."],
       intro:
         "Nouă camere între dealurile din Pietroșița, cu bucătărie comună, terasă și loc de foc. Pentru familie, prieteni sau echipa ta.",
-      barLabel: "Verifică perioada",
-      arrival: "Sosire",
-      departure: "Plecare",
-      guests: "Adulți",
-      cta: "Verifică disponibilitatea",
-      note: "Rezervi direct cu gazdele, fără intermediari.",
-      callPrompt: "Preferi să vorbim?",
+      cta: "Rezervă direct",
+      note: "Rezervi direct cu gazdele, fără intermediari. Răspundem pe WhatsApp sau la telefon.",
       whatsapp: "WhatsApp",
     },
     about: {
@@ -304,18 +297,11 @@ export const content = {
       closeMenu: "Close menu",
     },
     hero: {
-      stars: "Three-star guesthouse",
-      kicker: "Three-star guesthouse in Pietroșița, Dâmbovița",
       title: ["Moments.", "Together.", "In nature."],
       intro:
         "Nine rooms among the hills of Pietroșița, with a shared kitchen, a terrace and a fire pit. For family, friends or your team.",
-      barLabel: "Check your dates",
-      arrival: "Arrival",
-      departure: "Departure",
-      guests: "Adults",
-      cta: "Check availability",
-      note: "You book directly with the hosts, no middleman.",
-      callPrompt: "Rather talk to us?",
+      cta: "Book directly",
+      note: "You book directly with the hosts, no middleman. We reply on WhatsApp or by phone.",
       whatsapp: "WhatsApp",
     },
     about: {

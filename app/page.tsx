@@ -2,9 +2,9 @@
 
 /* eslint-disable @next/next/no-img-element -- local WebP files are pre-sized and pre-compressed for static cPanel hosting */
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import BookingForm from "./BookingForm";
-import { addDays, emptyDraft, isoDate, whatsappLink, type BookingDraft } from "./booking";
+import { emptyDraft, isoDate, whatsappLink, type BookingDraft } from "./booking";
 import { contact, content, galleryImages, type Language, type Stay } from "./content";
 import { ChatIcon, CheckIcon, MailIcon, MoonIcon, PeakIcon, PhoneIcon, PinIcon, SunIcon } from "./icons";
 
@@ -74,17 +74,7 @@ export default function Home() {
     goToBooking(draft.arrival ? "booking-name" : "booking-arrival");
   }
 
-  function setQuick<K extends "arrival" | "departure" | "adults">(key: K, value: BookingDraft[K]) {
-    setDraft((current) => {
-      const next = { ...current, [key]: value };
-      if (key === "arrival" && typeof value === "string" && value && (!next.departure || next.departure <= value)) {
-        next.departure = addDays(value, 1);
-      }
-      return next;
-    });
-  }
-
-  function handleQuickBook(event: FormEvent<HTMLFormElement>) {
+  function startBooking(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault();
     goToBooking(draft.arrival ? "booking-name" : "booking-arrival");
   }
@@ -154,65 +144,24 @@ export default function Home() {
           />
         </div>
         <div className="hero-copy">
-          <p className="hero-kicker">
-            <span className="stars" role="img" aria-label={t.hero.stars}>★★★</span>
-            <span>{t.hero.kicker}</span>
-          </p>
           <h1>
             {t.hero.title.map((line) => <span key={line}>{line}</span>)}
           </h1>
           <p className="hero-intro">{t.hero.intro}</p>
+          <div className="hero-actions">
+            <a className="btn btn-light btn-large" href="#rezervare" onClick={startBooking}>{t.hero.cta}</a>
+            <a className="hero-link" href={`tel:${contact.phoneValue}`}>
+              <PhoneIcon />
+              {contact.phoneDisplay}
+            </a>
+            <a className="hero-link" href={whatsappLink()} target="_blank" rel="noreferrer">
+              <ChatIcon />
+              {t.hero.whatsapp}
+            </a>
+          </div>
+          <p className="hero-note">{t.hero.note}</p>
         </div>
 
-        <form className="quick-book" aria-label={t.hero.barLabel} onSubmit={handleQuickBook}>
-          <div className="quick-field">
-            <label htmlFor="quick-arrival">{t.hero.arrival}</label>
-            <input
-              id="quick-arrival"
-              type="date"
-              min={today || undefined}
-              value={draft.arrival}
-              onChange={(event) => setQuick("arrival", event.target.value)}
-            />
-          </div>
-          <div className="quick-field">
-            <label htmlFor="quick-departure">{t.hero.departure}</label>
-            <input
-              id="quick-departure"
-              type="date"
-              min={draft.arrival ? addDays(draft.arrival, 1) : today || undefined}
-              value={draft.departure}
-              onChange={(event) => setQuick("departure", event.target.value)}
-            />
-          </div>
-          <div className="quick-field quick-guests">
-            <label htmlFor="quick-adults">{t.hero.guests}</label>
-            <select
-              id="quick-adults"
-              value={draft.adults}
-              onChange={(event) => setQuick("adults", Number(event.target.value))}
-            >
-              {Array.from({ length: 20 }, (_, index) => index + 1).map((count) => (
-                <option key={count} value={count}>{count}</option>
-              ))}
-            </select>
-          </div>
-          <button className="btn btn-primary quick-submit" type="submit">{t.hero.cta}</button>
-          <div className="quick-foot">
-            <p>{t.hero.note}</p>
-            <p className="quick-contact">
-              <span>{t.hero.callPrompt}</span>
-              <a href={`tel:${contact.phoneValue}`}>
-                <PhoneIcon />
-                {contact.phoneDisplay}
-              </a>
-              <a href={whatsappLink()} target="_blank" rel="noreferrer">
-                <ChatIcon />
-                {t.hero.whatsapp}
-              </a>
-            </p>
-          </div>
-        </form>
       </section>
 
       <section className="section about" id="despre">
