@@ -1,0 +1,107 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "https://edmont.ro/#pensiunea-edmont",
+  "name": "Pensiunea EdMont",
+  "alternateName": "EdMont Resort",
+  "description": "Pensiune de 3 stele în Pietroșița, cu 9 camere pentru până la 20 de oaspeți, spații comune, retreaturi și evenimente.",
+  "slogan": "Momente. Împreună. În natură.",
+  "url": "https://edmont.ro",
+  "logo": "https://edmont.ro/images/logo.webp",
+  "image": [
+    "https://edmont.ro/images/hero.webp",
+    "https://edmont.ro/images/room-double.webp",
+    "https://edmont.ro/images/kitchen.webp",
+    "https://edmont.ro/images/dining.webp",
+    "https://edmont.ro/images/terrace-view.webp"
+  ],
+  "telephone": "+40772210309",
+  "email": "edmont.residence@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Str. Dealul Frumos nr. 60A",
+    "addressLocality": "Pietroșița",
+    "addressRegion": "Dâmbovița",
+    "addressCountry": "RO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.18320445214751,
+    "longitude": 25.427684273426642
+  },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=45.18320445214751%2C25.427684273426642",
+  "starRating": {
+    "@type": "Rating",
+    "ratingValue": 3,
+    "bestRating": 5
+  },
+  "numberOfRooms": 9,
+  "occupancy": {
+    "@type": "QuantitativeValue",
+    "maxValue": 20,
+    "unitText": "guests"
+  },
+  "checkinTime": "14:00",
+  "checkoutTime": "12:00",
+  "petsAllowed": true,
+  "currenciesAccepted": "RON",
+  "paymentAccepted": "Cash, cashless payment",
+  "amenityFeature": [
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Wi-Fi",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Private parking",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Shared kitchen",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Dining room",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Terrace and grill",
+      "value": true
+    },
+    {
+      "@type": "LocationFeatureSpecification",
+      "name": "Projector and screen",
+      "value": true
+    }
+  ],
+  "sameAs": [
+    "https://www.booking.com/hotel/ro/pensiunea-edmont-pietrosita.ro.html",
+    "https://www.facebook.com/PensiuneaEdmont/",
+    "https://www.instagram.com/edmont.pensiunea/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+40772210309",
+    "email": "edmont.residence@gmail.com",
+    "contactType": "reservations",
+    "availableLanguage": [
+      "Romanian",
+      "English"
+    ]
+  },
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://edmont.ro/#rezervare",
+      "actionPlatform": [
+        "https://schema.org/DesktopWebPlatform",
+        "https://schema.org/MobileWebPlatform"
+      ]
+    }
+  }
+}
