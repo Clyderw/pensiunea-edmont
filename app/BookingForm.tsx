@@ -5,6 +5,7 @@ import {
   addDays,
   buildMessage,
   countryPrefixes,
+  detectPrefix,
   emailLink,
   emptyDraft,
   formatDate,
@@ -39,6 +40,7 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
   const openedAt = useRef(0);
   const resultRef = useRef<HTMLDivElement>(null);
   const guardRef = useRef<Promise<Guard> | null>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
   const [recaptchaKey, setRecaptchaKey] = useState("");
 
   useEffect(() => {
@@ -75,6 +77,29 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
     if (errors[key as keyof BookingErrors]) {
       setErrors((current) => ({ ...current, [key]: undefined }));
     }
+  }
+
+  // "Other country": the guest types the whole number with +, so the field starts with it.
+  function choosePrefix(code: string) {
+    update("prefix", code);
+    const phone = draft.phone.trim();
+    if (!code) {
+      if (!phone) update("phone", "+");
+      phoneRef.current?.focus();
+      return;
+    }
+    // A number typed with another country's code loses that code when a country is picked.
+    const typed = detectPrefix(phone);
+    if (typed && typed !== code) {
+      update("phone", phone.replace(new RegExp(`^(\\+|00)\\s*${typed.slice(1)}`), "").trim());
+    }
+  }
+
+  // Typing a number with + switches the list to that country, or to "Other country".
+  function typePhone(value: string) {
+    update("phone", value);
+    const typed = detectPrefix(value);
+    if (typed !== null && typed !== draft.prefix) update("prefix", typed);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -294,21 +319,23 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
             <select
               aria-label={t.prefix}
               value={draft.prefix}
-              onChange={(event) => update("prefix", event.target.value)}
+              onChange={(event) => choosePrefix(event.target.value)}
             >
               {countryPrefixes.map(([country, code]) => (
                 <option key={country} value={code}>{country} {code}</option>
               ))}
+              <option value="">{t.otherPrefix}</option>
             </select>
             <input
               id="booking-phone"
+              ref={phoneRef}
               type="tel"
               inputMode="tel"
-              autoComplete="tel-national"
-              placeholder={t.phonePlaceholder}
+              autoComplete={draft.prefix ? "tel-national" : "tel"}
+              placeholder={draft.prefix ? t.phonePlaceholder : t.phonePlaceholderIntl}
               maxLength={24}
               value={draft.phone}
-              onChange={(event) => update("phone", event.target.value)}
+              onChange={(event) => typePhone(event.target.value)}
               aria-invalid={Boolean(errors.phone)}
               aria-describedby={errors.phone ? "booking-phone-error booking-phone-hint" : "booking-phone-hint"}
               required

@@ -86,12 +86,28 @@ export function normalizePhone(prefix: string, raw: string) {
 
   if (!value.startsWith("+")) {
     const code = prefix.replace("+", "");
-    value = value.startsWith(code) && value.length - code.length >= 8
-      ? `+${value}`
-      : `${prefix}${value.replace(/^0+/, "")}`;
+    if (!code || (value.startsWith(code) && value.length - code.length >= 8)) {
+      value = `+${value}`;
+    } else {
+      value = `${prefix}${value.replace(/^0+/, "")}`;
+    }
   }
 
   return /^\+[1-9]\d{7,14}$/.test(value) ? value : null;
+}
+
+// For a number typed with + (or 00): the matching code from the list, "" for a country
+// that is not in the list, null when the number has no country code yet.
+export function detectPrefix(raw: string) {
+  let value = raw.trim().replace(/[\s().\-/]/g, "");
+  if (value.startsWith("00")) value = `+${value.slice(2)}`;
+  if (!value.startsWith("+")) return null;
+  const digits = value.slice(1);
+  const matches = countryPrefixes
+    .map(([, code]) => code)
+    .filter((code) => digits.startsWith(code.slice(1)))
+    .sort((a, b) => b.length - a.length);
+  return matches[0] ?? "";
 }
 
 export type BookingErrors = Partial<Record<"arrival" | "departure" | "name" | "phone" | "email", string>>;

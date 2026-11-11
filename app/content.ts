@@ -190,8 +190,9 @@ export const content = {
       phone: "Telefon",
       prefix: "Prefixul țării",
       phonePlaceholder: "7xx xxx xxx",
-      phoneHint: "Ai număr din altă țară? Alege prefixul sau scrie numărul cu + la început.",
-      otherPrefix: "Alt prefix",
+      phonePlaceholderIntl: "+351 912 345 678",
+      phoneHint: "Număr din altă țară? Alege țara din listă sau „Altă țară” și scrie numărul cu + la început.",
+      otherPrefix: "Altă țară",
       email: "Email (opțional)",
       pet: "Animal de companie",
       petOptions: {
@@ -443,8 +444,9 @@ export const content = {
       phone: "Phone",
       prefix: "Country code",
       phonePlaceholder: "Phone number",
-      phoneHint: "Not a Romanian number? Pick your country code or type the number starting with +.",
-      otherPrefix: "Other code",
+      phonePlaceholderIntl: "+351 912 345 678",
+      phoneHint: "Number from another country? Pick it in the list or choose “Other country” and type the number starting with +.",
+      otherPrefix: "Other country",
       email: "Email (optional)",
       pet: "Pet",
       petOptions: {

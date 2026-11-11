@@ -1032,7 +1032,7 @@ h1 span:nth-child(3) {
 .phone-row {
   display: grid;
   gap: 8px;
-  grid-template-columns: 112px minmax(0, 1fr);
+  grid-template-columns: 140px minmax(0, 1fr);
 }
 
 .trap {
@@ -1414,9 +1414,10 @@ h1 span:nth-child(3) {
     background: linear-gradient(0deg, rgba(8, 22, 17, 0.88) 0%, rgba(8, 22, 17, 0.56) 50%, rgba(8, 22, 17, 0.34) 100%);
   }
 
-  /* hero-mobile.webp is already cropped without the sky, so it just fills the frame. */
+  /* hero-mobile.webp is already cropped without the sky; 42% keeps the same framing
+     the phones had with the full photo. */
   .hero-media img {
-    object-position: 50% 100%;
+    object-position: 42% 100%;
   }
 
   .section-head,
@@ -1667,7 +1668,7 @@ h1 span:nth-child(3) {
     width: 128px;
   }
   .phone-row {
-    grid-template-columns: 100px minmax(0, 1fr);
+    grid-template-columns: 124px minmax(0, 1fr);
   }
 }
 
