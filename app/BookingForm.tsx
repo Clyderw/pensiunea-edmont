@@ -31,7 +31,7 @@ type Props = {
   endpoint: string;
 };
 
-const fieldOrder: (keyof BookingErrors)[] = ["arrival", "departure", "name", "phone", "email"];
+const fieldOrder: (keyof BookingErrors)[] = ["arrival", "departure", "name", "email", "phone"];
 
 export default function BookingForm({ t, language, draft, setDraft, today, endpoint }: Props) {
   const [errors, setErrors] = useState<BookingErrors>({});
@@ -86,6 +86,11 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
     if (!code) {
       if (!phone) update("phone", "+");
       phoneRef.current?.focus();
+      return;
+    }
+    // The lone "+" left by "Other country" goes away when a country is picked.
+    if (phone === "+" || phone === "00") {
+      update("phone", "");
       return;
     }
     // A number typed with another country's code loses that code when a country is picked.
@@ -297,7 +302,7 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
           </select>
         </div>
 
-        <div className={errors.name ? "field field-full has-error" : "field field-full"}>
+        <div className={errors.name ? "field has-error" : "field"}>
           <label htmlFor="booking-name">{t.name}</label>
           <input
             id="booking-name"
@@ -313,7 +318,22 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
           {errors.name && <p className="field-error" id="booking-name-error">{errors.name}</p>}
         </div>
 
-        <div className={errors.phone ? "field has-error" : "field"}>
+        <div className={errors.email ? "field has-error" : "field"}>
+          <label htmlFor="booking-email">{t.email}</label>
+          <input
+            id="booking-email"
+            type="email"
+            autoComplete="email"
+            maxLength={120}
+            value={draft.email}
+            onChange={(event) => update("email", event.target.value)}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "booking-email-error" : undefined}
+          />
+          {errors.email && <p className="field-error" id="booking-email-error">{errors.email}</p>}
+        </div>
+
+        <div className={errors.phone ? "field field-full has-error" : "field field-full"}>
           <label htmlFor="booking-phone">{t.phone}</label>
           <div className="phone-row">
             <select
@@ -332,7 +352,7 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
               type="tel"
               inputMode="tel"
               autoComplete={draft.prefix ? "tel-national" : "tel"}
-              placeholder={draft.prefix ? t.phonePlaceholder : t.phonePlaceholderIntl}
+              placeholder={!draft.prefix ? t.phonePlaceholderIntl : draft.prefix === "+40" ? t.phonePlaceholder : t.phonePlaceholderOther}
               maxLength={24}
               value={draft.phone}
               onChange={(event) => typePhone(event.target.value)}
@@ -343,21 +363,6 @@ export default function BookingForm({ t, language, draft, setDraft, today, endpo
           </div>
           <p className="field-hint" id="booking-phone-hint">{t.phoneHint}</p>
           {errors.phone && <p className="field-error" id="booking-phone-error">{errors.phone}</p>}
-        </div>
-
-        <div className={errors.email ? "field has-error" : "field"}>
-          <label htmlFor="booking-email">{t.email}</label>
-          <input
-            id="booking-email"
-            type="email"
-            autoComplete="email"
-            maxLength={120}
-            value={draft.email}
-            onChange={(event) => update("email", event.target.value)}
-            aria-invalid={Boolean(errors.email)}
-            aria-describedby={errors.email ? "booking-email-error" : undefined}
-          />
-          {errors.email && <p className="field-error" id="booking-email-error">{errors.email}</p>}
         </div>
 
         <div className="field field-full">
