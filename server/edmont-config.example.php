@@ -25,6 +25,8 @@ return [
         'to' => 'edmont.residence@gmail.com',
         'from' => 'rezervari@edmont.ro',
         'from_name' => 'Rezervări EdMont',
+        // Extra silent copies, each sent as its own letter (the hosts do not see them).
+        'copy_to' => [],
     ],
 
     // Google reCAPTCHA v3 (optional). Leave empty to switch it off.

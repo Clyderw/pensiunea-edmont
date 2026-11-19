@@ -469,15 +469,26 @@ function send_mail(array $config, array $r): bool
         $headers[] = 'Reply-To: ' . $r['email'];
     }
 
-    $ok = @mail(
-        $to,
-        '=?UTF-8?B?' . base64_encode($subject) . '?=',
-        mail_body($r),
-        implode("\r\n", $headers),
-        '-f' . $from
-    );
+    $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+    $body = mail_body($r);
+    $headerText = implode("\r\n", $headers);
+
+    $ok = @mail($to, $encodedSubject, $body, $headerText, '-f' . $from);
     if (!$ok) {
         error_log('EdMont booking: mail() failed');
+    }
+
+    // Silent copies (for example the site administrator): sent as separate letters,
+    // so the hosts never see these addresses. A failed copy does not fail the request.
+    foreach ((array)($mail['copy_to'] ?? []) as $copy) {
+        $copy = trim((string)$copy);
+        if ($copy === '' || !filter_var($copy, FILTER_VALIDATE_EMAIL)) {
+            continue;
+        }
+        $copySubject = '=?UTF-8?B?' . base64_encode('Copie: ' . $subject) . '?=';
+        if (!@mail($copy, $copySubject, $body, $headerText, '-f' . $from)) {
+            error_log('EdMont booking: copy mail() failed');
+        }
     }
     return $ok;
 }

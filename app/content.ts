@@ -206,7 +206,7 @@ export const content = {
       submit: "Trimite cererea",
       sending: "Se trimite...",
       privacy:
-        "Folosim datele tale doar ca să-ți răspundem la cerere. Cererea ajunge doar la gazde, prin email sau WhatsApp.",
+        "Folosim datele tale doar ca să-ți răspundem la cerere.",
       recaptcha: {
         text: "Formularul este protejat de Google reCAPTCHA:",
         privacy: "confidențialitate",
@@ -461,7 +461,7 @@ export const content = {
       submit: "Send request",
       sending: "Sending...",
       privacy:
-        "We use your details only to reply to your request. It goes only to the hosts, by email or WhatsApp.",
+        "We use your details only to reply to your request.",
       recaptcha: {
         text: "This form is protected by Google reCAPTCHA:",
         privacy: "privacy",
