@@ -19,17 +19,17 @@
   "email": "edmont.residence@gmail.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Str. Dealul Frumos nr. 60A",
+    "streetAddress": "Str. Dealu Frumos nr. 60A",
     "addressLocality": "Pietroșița",
     "addressRegion": "Dâmbovița",
     "addressCountry": "RO"
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 45.18320445214751,
-    "longitude": 25.427684273426642
+    "latitude": 45.1832007,
+    "longitude": 25.4302592
   },
-  "hasMap": "https://www.google.com/maps/search/?api=1&query=45.18320445214751%2C25.427684273426642",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=45.1832007%2C25.4302592",
   "starRating": {
     "@type": "Rating",
     "ratingValue": 3,

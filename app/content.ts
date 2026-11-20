@@ -265,7 +265,7 @@ export const content = {
     },
     contact: {
       title: "Cum ajungi la EdMont",
-      address: "Comuna Pietroșița, Str. Dealul Frumos nr. 60A, jud. Dâmbovița",
+      address: "Comuna Pietroșița, Str. Dealu Frumos nr. 60A, jud. Dâmbovița",
       directions: "Deschide în Google Maps",
       mapTitle: "Pensiunea EdMont pe Google Maps",
       social: "Ne găsești și pe",
@@ -520,7 +520,7 @@ export const content = {
     },
     contact: {
       title: "How to find EdMont",
-      address: "Comuna Pietroșița, Str. Dealul Frumos nr. 60A, Dâmbovița county",
+      address: "Comuna Pietroșița, Str. Dealu Frumos nr. 60A, Dâmbovița county",
       directions: "Open in Google Maps",
       mapTitle: "Pensiunea EdMont on Google Maps",
       social: "Find us on",
