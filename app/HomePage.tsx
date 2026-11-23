@@ -6,85 +6,24 @@ import { useEffect, useState, type MouseEvent } from "react";
 import BookingForm from "./BookingForm";
 import { emptyDraft, isoDate, whatsappLink, type BookingDraft } from "./booking";
 import { contact, content, galleryImages, type Language, type Stay } from "./content";
-import { ChatIcon, CheckIcon, MailIcon, MoonIcon, PeakIcon, PhoneIcon, PinIcon, SunIcon } from "./icons";
+import { guidePath, guides } from "./guides";
+import { ChatIcon, CheckIcon, MailIcon, PeakIcon, PhoneIcon, PinIcon } from "./icons";
+import MobileBar from "./MobileBar";
+import SiteFooter from "./SiteFooter";
+import SiteHeader from "./SiteHeader";
+import { assetPath, homeHref, photo } from "./site";
 
-type Theme = "light" | "dark";
+const endpoint = assetPath("/api/rezervare.php");
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const assetPath = (path: string) => `${basePath}${path}`;
-const endpoint = `${basePath}/api/rezervare.php`;
-
-// Smaller copies (name-640.webp, name-960.webp) let phones download a lighter photo.
-const photoWidths: Record<string, number[]> = {
-  hero: [640, 960, 1200],
-  "room-double": [640, 960, 1280],
-  "room-view": [640, 960, 1125],
-  "room-green": [640, 960, 1280],
-  kitchen: [640, 960, 1280],
-  dining: [640, 960, 1280],
-  "dining-detail": [640, 960, 1280],
-  balcony: [640, 720],
-  "terrace-view": [640, 1024],
-  "event-room": [640, 1024],
-};
-
-function photo(path: string) {
-  const name = path.replace("/images/", "").replace(".webp", "");
-  const widths = photoWidths[name];
-  if (!widths) return { src: assetPath(path) };
-  const full = widths[widths.length - 1];
-  const srcSet = widths
-    .map((width) => `${assetPath(width === full ? path : `/images/${name}-${width}.webp`)} ${width}w`)
-    .join(", ");
-  return { src: assetPath(path), srcSet };
-}
-
-export default function Home() {
-  const [language, setLanguage] = useState<Language>("ro");
-  const [theme, setTheme] = useState<Theme>("light");
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showMobileBar, setShowMobileBar] = useState(false);
+export default function HomePage({ language }: { language: Language }) {
   const [draft, setDraft] = useState<BookingDraft>(emptyDraft);
   const [today, setToday] = useState("");
   const t = content[language];
-  const closeMenu = () => setMenuOpen(false);
+  const other: Language = language === "ro" ? "en" : "ro";
 
   useEffect(() => {
     setToday(isoDate(new Date()));
-    if (document.documentElement.dataset.theme === "dark") setTheme("dark");
   }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = language;
-  }, [language]);
-
-  useEffect(() => {
-    let ticking = false;
-    const update = () => {
-      setShowMobileBar(window.scrollY > 520);
-      ticking = false;
-    };
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  function toggleTheme() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    try {
-      localStorage.setItem("edmont-theme", next);
-    } catch {
-      // Private mode: the choice simply isn't remembered.
-    }
-  }
 
   function goToBooking(focusId?: string) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -108,55 +47,7 @@ export default function Home() {
     <main>
       <a className="skip-link" href="#despre">{t.skip}</a>
 
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Pensiunea EdMont" onClick={closeMenu}>
-          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="480" height="180" />
-          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="480" height="180" />
-        </a>
-
-        <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label={t.nav.label}>
-          <a href="#despre" onClick={closeMenu}>{t.nav.about}</a>
-          <a href="#camere" onClick={closeMenu}>{t.nav.rooms}</a>
-          <a href="#evenimente" onClick={closeMenu}>{t.nav.events}</a>
-          <a href="#galerie" onClick={closeMenu}>{t.nav.gallery}</a>
-          <a href="#contact" onClick={closeMenu}>{t.nav.contact}</a>
-        </nav>
-
-        <div className="header-actions">
-          <a className="header-phone" href={`tel:${contact.phoneValue}`} aria-label={`${t.header.call}: ${contact.phoneDisplay}`}>
-            <PhoneIcon />
-            <span>{contact.phoneDisplay}</span>
-          </a>
-          <button
-            className="icon-button"
-            type="button"
-            onClick={toggleTheme}
-            aria-label={theme === "dark" ? t.header.themeToLight : t.header.themeToDark}
-            title={theme === "dark" ? t.header.themeToLight : t.header.themeToDark}
-          >
-            {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-          </button>
-          <button
-            className="icon-button language-switch"
-            type="button"
-            onClick={() => setLanguage(language === "ro" ? "en" : "ro")}
-            aria-label={t.header.language}
-          >
-            {language === "ro" ? "EN" : "RO"}
-          </button>
-          <a className="btn btn-primary header-book" href="#rezervare" onClick={closeMenu}>{t.header.book}</a>
-          <button
-            type="button"
-            className={menuOpen ? "menu-button is-open" : "menu-button"}
-            aria-label={menuOpen ? t.header.closeMenu : t.header.openMenu}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span />
-            <span />
-          </button>
-        </div>
-      </header>
+      <SiteHeader language={language} onHome altHref={homeHref(other)} />
 
       <section className="hero" id="top">
         <div className="hero-media">
@@ -190,7 +81,6 @@ export default function Home() {
           </div>
           <p className="hero-note">{t.hero.note}</p>
         </div>
-
       </section>
 
       <section className="section about" id="despre">
@@ -345,6 +235,47 @@ export default function Home() {
         </ul>
       </section>
 
+      <section className="section nearby" id="imprejurimi">
+        <div className="section-head">
+          <h2>{t.nearby.title}</h2>
+          <p>{t.nearby.intro}</p>
+        </div>
+        <ul className="place-list">
+          {t.nearby.places.map((place) => (
+            <li key={place.name}>
+              <div>
+                <h3>{place.name}</h3>
+                <p>{place.text}</p>
+              </div>
+              <span className="place-distance">{place.distance}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="road-note">{t.nearby.roadNote}</p>
+
+        <h3 className="guides-title">{t.nearby.guidesTitle}</h3>
+        <div className="guide-cards">
+          {guides[language].map((guide) => (
+            <a className="guide-card" key={guide.key} href={assetPath(guidePath(language, guide.slug))}>
+              <img
+                {...photo(guide.image)}
+                sizes="(max-width: 640px) 84vw, (max-width: 920px) 50vw, 400px"
+                alt=""
+                width="1600"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="guide-card-copy">
+                <strong>{guide.title}</strong>
+                <span>{guide.card}</span>
+                <span className="guide-card-link">{t.nearby.readGuide}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="section gallery" id="galerie">
         <h2>{t.gallery.title}</h2>
         <div className="gallery-grid">
@@ -425,6 +356,18 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section faq" id="intrebari">
+        <h2>{t.faq.title}</h2>
+        <div className="faq-list">
+          {t.faq.items.map(([question, answer]) => (
+            <details key={question}>
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <section className="contact" id="contact">
         <div className="contact-copy">
           <h2>{t.contact.title}</h2>
@@ -451,30 +394,8 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="site-footer">
-        <span className="footer-logo">
-          <img className="logo-ink" src={assetPath("/images/logo-ink.webp")} alt="" width="480" height="180" loading="lazy" />
-          <img className="logo-light" src={assetPath("/images/logo-light.webp")} alt="" width="480" height="180" loading="lazy" />
-        </span>
-        <span>{t.footer}</span>
-        <span>© {new Date().getFullYear()}</span>
-      </footer>
-
-      <nav
-        className={showMobileBar ? "mobile-bar is-visible" : "mobile-bar"}
-        aria-label={t.mobileBar.label}
-        aria-hidden={!showMobileBar}
-      >
-        <a href={`tel:${contact.phoneValue}`} tabIndex={showMobileBar ? 0 : -1}>
-          <PhoneIcon /> {t.mobileBar.call}
-        </a>
-        <a href={whatsappLink()} target="_blank" rel="noreferrer" tabIndex={showMobileBar ? 0 : -1}>
-          <ChatIcon /> {t.mobileBar.whatsapp}
-        </a>
-        <a className="mobile-book" href="#rezervare" tabIndex={showMobileBar ? 0 : -1}>
-          {t.mobileBar.book}
-        </a>
-      </nav>
+      <SiteFooter language={language} t={t} />
+      <MobileBar language={language} bookHref="#rezervare" />
     </main>
   );
 }

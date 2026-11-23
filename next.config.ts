@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   ...(isGitHubPages ? { output: "export" as const } : {}),
   basePath,
   assetPrefix: basePath || undefined,
+  // /en/ and /ghid/name/ are exported as folders with index.html, which plain hosting serves as is.
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

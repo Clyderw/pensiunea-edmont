@@ -29,6 +29,7 @@ export const content = {
       rooms: "Camere",
       events: "Evenimente",
       gallery: "Galerie",
+      around: "Împrejurimi",
       contact: "Contact",
     },
     header: {
@@ -51,7 +52,7 @@ export const content = {
     about: {
       title: "Liniște pentru doi. Spațiu pentru toți.",
       body:
-        "Înconjurată de dealurile verzi din Pietroșița, EdMont are camere confortabile și spații în care poți găti, lua masa, lucra sau sta pur și simplu împreună cu ai tăi.",
+        "Înconjurată de dealurile verzi din Pietroșița, județul Dâmbovița, EdMont are camere confortabile și spații în care poți găti, lua masa, lucra sau sta pur și simplu împreună cu ai tăi. Moroeni și Runcu sunt la câteva minute, iar Fieni la aproximativ 12 minute cu mașina.",
       factsLabel: "Pe scurt",
       facts: [
         ["9 camere", "fiecare cu baie proprie"],
@@ -80,7 +81,7 @@ export const content = {
       whole: {
         title: "Toată pensiunea, doar pentru grupul tău",
         text:
-          "Toate cele 9 camere și toate spațiile comune, fără taxe suplimentare. Potrivită pentru reuniuni de familie, prieteni sau echipe de până la 20 de persoane.",
+          "Toate cele 9 camere și toate spațiile comune, fără taxe suplimentare, ca o cabană închiriată doar pentru voi. Potrivită pentru reuniuni de familie, prieteni sau echipe de până la 20 de persoane.",
         cta: "Cere ofertă pentru toată pensiunea",
         alt: "Sala de mese pentru grupuri la Pensiunea EdMont",
       },
@@ -159,6 +160,35 @@ export const content = {
         "Mese pregătite în sala de mese EdMont",
         "Priveliște de pe balconul Pensiunii EdMont",
         "Cameră în nuanțe verzi la Pensiunea EdMont",
+      ],
+    },
+    nearby: {
+      title: "Prin împrejurimi",
+      intro:
+        "EdMont e un loc liniștit din care pleci ușor spre Bucegi și spre orașele din jur. Distanțele sunt aproximative, cu mașina.",
+      places: [
+        { name: "Sinaia și Castelul Peleș", text: "Castelul regal, Mănăstirea Sinaia și telecabina spre munte.", distance: "33 km, aprox. 50 min" },
+        { name: "Bușteni, Babele și Sfinxul", text: "Cu telecabina din Bușteni urci pe Platoul Bucegi, la peste 2.000 de metri.", distance: "39 km, aprox. 55 min" },
+        { name: "Lacul Bolboci și Cheile Tătarului", text: "Lac de munte și chei de calcar pe drumul spre Padina.", distance: "40 km, aprox. 1 oră" },
+        { name: "Peștera Ialomiței", text: "Peșteră amenajată pentru vizitare, cu un schit chiar la intrare.", distance: "46 km, aprox. 1 oră și 15 min" },
+        { name: "Târgoviște", text: "Fosta capitală a Țării Românești, cu Curtea Domnească și Turnul Chindiei.", distance: "35 km, aprox. 50 min" },
+        { name: "Brașov și Castelul Bran", text: "Centrul vechi al Brașovului și castelul legat de legenda lui Dracula.", distance: "75-80 km, aprox. 1 oră și 45 min" },
+      ],
+      roadNote: "Drumul spre Lacul Bolboci, Padina și Peștera Ialomiței poate fi greu de circulat iarna. Verifică starea lui înainte să pleci.",
+      guidesTitle: "Ghiduri pentru zilele tale aici",
+      readGuide: "Citește ghidul",
+    },
+    faq: {
+      title: "Întrebări frecvente",
+      items: [
+        ["Unde se află Pensiunea EdMont?", "În comuna Pietroșița, județul Dâmbovița, pe Valea Ialomiței, la Str. Dealu Frumos nr. 60A. Moroeni și Runcu sunt la câteva minute, Fieni la aproximativ 12 minute, iar Sinaia și Târgoviște la aproximativ 50 de minute cu mașina."],
+        ["Cât de departe este de București?", "Aproximativ 145 km, adică în jur de 2 ore și jumătate cu mașina, în funcție de trafic."],
+        ["Ce poți vizita în apropiere?", "Sinaia și Castelul Peleș, Platoul Bucegi cu Babele și Sfinxul (cu telecabina din Bușteni), Lacul Bolboci, Cheile Tătarului, Peștera Ialomiței și Târgoviște."],
+        ["Pot rezerva toată pensiunea pentru un grup sau un eveniment?", "Da. Primești toate cele 9 camere, pentru până la 20 de persoane, cu spațiile comune și echipamentele incluse, fără taxe suplimentare."],
+        ["Se acceptă animale de companie?", "Animalele de talie mică sunt acceptate la cerere. Spune-ne în formularul de rezervare."],
+        ["La ce oră sunt check-in și check-out?", "Check-in de la 14:00 și check-out până la 12:00."],
+        ["Există parcare și Wi-Fi?", "Da, parcare privată în curte și Wi-Fi gratuit."],
+        ["Cum rezerv?", "Completezi formularul de pe site. Gazdele verifică perioada și îți răspund pe WhatsApp sau la telefon. Prin site nu plătești nimic."],
       ],
     },
     booking: {
@@ -277,6 +307,14 @@ export const content = {
       book: "Rezervă",
     },
     footer: "Pensiunea EdMont, Pietroșița",
+    footerGuides: "Ghiduri",
+    breadcrumbHome: "Acasă",
+    breadcrumbGuides: "Ghiduri",
+    guideCtaTitle: "Stai la EdMont",
+    guideCtaText: "Nouă camere în liniștea dealurilor din Pietroșița, cu bucătărie comună, terasă și loc de foc. Rezervi direct cu gazdele.",
+    guideCtaButton: "Vezi camerele și rezervă",
+    otherGuides: "Alte ghiduri",
+    atGlance: "Pe scurt",
   },
   en: {
     skip: "Skip to content",
@@ -286,6 +324,7 @@ export const content = {
       rooms: "Rooms",
       events: "Events",
       gallery: "Gallery",
+      around: "Around",
       contact: "Contact",
     },
     header: {
@@ -308,7 +347,7 @@ export const content = {
     about: {
       title: "Peaceful for two. Spacious for everyone.",
       body:
-        "Surrounded by the green hills of Pietroșița, EdMont has comfortable rooms and shared spaces where you can cook, dine, work or simply spend time with your people.",
+        "Surrounded by the green hills of Pietroșița, in Dâmbovița county, EdMont has comfortable rooms and shared spaces where you can cook, dine, work or simply spend time with your people. Moroeni and Runcu are a few minutes away, and Fieni about 12 minutes by car.",
       factsLabel: "At a glance",
       facts: [
         ["9 rooms", "each with a private bathroom"],
@@ -336,7 +375,7 @@ export const content = {
       whole: {
         title: "The whole guesthouse, just for your group",
         text:
-          "All 9 rooms and every shared space, with no extra fees. Right for family reunions, friends or teams of up to 20 people.",
+          "All 9 rooms and every shared space, with no extra fees, like a private chalet just for your group. Right for family reunions, friends or teams of up to 20 people.",
         cta: "Ask for a whole-house quote",
         alt: "Dining space for groups at Pensiunea EdMont",
       },
@@ -414,6 +453,35 @@ export const content = {
         "Tables set in the EdMont dining room",
         "View from a balcony at Pensiunea EdMont",
         "Green-accent double room at Pensiunea EdMont",
+      ],
+    },
+    nearby: {
+      title: "Around EdMont",
+      intro:
+        "EdMont is a quiet base for the Bucegi Mountains and the towns around them. Distances are approximate, by car.",
+      places: [
+        { name: "Sinaia and Peleș Castle", text: "The royal castle, Sinaia Monastery and the cable car up the mountain.", distance: "33 km, about 50 min" },
+        { name: "Bușteni, Babele and the Sphinx", text: "The cable car from Bușteni takes you up to the Bucegi Plateau, above 2,000 metres.", distance: "39 km, about 55 min" },
+        { name: "Bolboci Lake and Tătarului Gorges", text: "A mountain lake and limestone gorges on the road to Padina.", distance: "40 km, about 1 hour" },
+        { name: "Ialomița Cave", text: "A show cave with a small monastery right at its entrance.", distance: "46 km, about 1 h 15 min" },
+        { name: "Târgoviște", text: "The old capital of Wallachia, with the Princely Court and Chindia Tower.", distance: "35 km, about 50 min" },
+        { name: "Brașov and Bran Castle", text: "Brașov's old town and the castle tied to the Dracula legend.", distance: "75-80 km, about 1 h 45 min" },
+      ],
+      roadNote: "The road to Bolboci Lake, Padina and Ialomița Cave can be hard to drive in winter. Check it before you set off.",
+      guidesTitle: "Guides for your days here",
+      readGuide: "Read the guide",
+    },
+    faq: {
+      title: "Frequently asked questions",
+      items: [
+        ["Where is Pensiunea EdMont?", "In Pietroșița, Dâmbovița county, in the Ialomița Valley, at Str. Dealu Frumos nr. 60A. Moroeni and Runcu are a few minutes away, Fieni about 12 minutes, and Sinaia and Târgoviște about 50 minutes by car."],
+        ["How far is it from Bucharest?", "About 145 km, so around 2.5 hours by car, depending on traffic."],
+        ["What can you visit nearby?", "Sinaia and Peleș Castle, the Bucegi Plateau with Babele and the Sphinx (by cable car from Bușteni), Bolboci Lake, the Tătarului Gorges, Ialomița Cave and Târgoviște."],
+        ["Can I book the whole guesthouse for a group or an event?", "Yes. You get all 9 rooms for up to 20 people, with the shared spaces and equipment included at no extra cost."],
+        ["Are pets allowed?", "Small pets are welcome on request. Let us know in the booking form."],
+        ["What are the check-in and check-out times?", "Check-in from 14:00 and check-out by 12:00."],
+        ["Is there parking and Wi-Fi?", "Yes, private parking in the yard and free Wi-Fi."],
+        ["How do I book?", "Fill in the form on the website. The hosts check your dates and reply on WhatsApp or by phone. You don't pay anything through the website."],
       ],
     },
     booking: {
@@ -532,6 +600,14 @@ export const content = {
       book: "Book",
     },
     footer: "Pensiunea EdMont, Pietroșița",
+    footerGuides: "Guides",
+    breadcrumbHome: "Home",
+    breadcrumbGuides: "Guides",
+    guideCtaTitle: "Stay at EdMont",
+    guideCtaText: "Nine rooms in the quiet hills of Pietroșița, with a shared kitchen, a terrace and a fire pit. You book directly with the hosts.",
+    guideCtaButton: "See the rooms and book",
+    otherGuides: "More guides",
+    atGlance: "At a glance",
   },
 };
 
