@@ -74,9 +74,7 @@
     }
   ],
   "sameAs": [
-    "https://www.booking.com/hotel/ro/pensiunea-edmont-pietrosita.ro.html",
-    "https://www.facebook.com/PensiuneaEdmont/",
-    "https://www.instagram.com/edmont.pensiunea/"
+    "https://www.booking.com/hotel/ro/pensiunea-edmont-pietrosita.ro.html"
   ],
   "contactPoint": {
     "@type": "ContactPoint",

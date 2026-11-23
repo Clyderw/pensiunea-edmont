@@ -5,8 +5,6 @@ export const contact = {
   phoneValue: "+40772210309",
   whatsappNumber: "40772210309",
   email: "edmont.residence@gmail.com",
-  facebook: "https://www.facebook.com/PensiuneaEdmont/",
-  instagram: "https://www.instagram.com/edmont.pensiunea/",
   bookingReviews: "https://www.booking.com/hotel/ro/pensiunea-edmont-pietrosita.ro.html#tab-reviews",
   maps: "https://www.google.com/maps/search/?api=1&query=Pensiunea+EdMont+Pietro%C8%99i%C8%9Ba",
 };
@@ -29,7 +27,6 @@ export const content = {
       rooms: "Camere",
       events: "Evenimente",
       gallery: "Galerie",
-      around: "Împrejurimi",
       contact: "Contact",
     },
     header: {
@@ -69,7 +66,7 @@ export const content = {
         text: "Pentru două persoane, cu un pat matrimonial generos.",
         meta: "2 oaspeți, 1 pat matrimonial",
         cta: "Alege camera dublă",
-        alt: "Cameră matrimonială luminoasă la Pensiunea EdMont",
+        alt: "Cameră dublă cu pat matrimonial, veioze și fotoliu la Pensiunea EdMont",
       },
       triple: {
         title: "Cameră triplă",
@@ -153,30 +150,14 @@ export const content = {
       title: "Cum arată un sejur la EdMont",
       alt: [
         "Pensiunea EdMont între dealurile verzi din Pietroșița",
-        "Cameră matrimonială luminoasă la Pensiunea EdMont",
-        "Cameră cu vedere spre dealuri la Pensiunea EdMont",
+        "Cameră dublă cu perete verde și veioze la Pensiunea EdMont",
+        "Cameră dublă cu ușă spre balcon la Pensiunea EdMont",
         "Bucătăria comună de la Pensiunea EdMont",
         "Sala de mese interioară de la Pensiunea EdMont",
-        "Mese pregătite în sala de mese EdMont",
-        "Priveliște de pe balconul Pensiunii EdMont",
-        "Cameră în nuanțe verzi la Pensiunea EdMont",
+        "Baie proprie cu prosoape EdMont",
+        "Priveliște spre munți din ușa balconului",
+        "Cameră dublă cu fereastră mare la Pensiunea EdMont",
       ],
-    },
-    nearby: {
-      title: "Prin împrejurimi",
-      intro:
-        "EdMont e un loc liniștit din care pleci ușor spre Bucegi și spre orașele din jur. Distanțele sunt aproximative, cu mașina.",
-      places: [
-        { name: "Sinaia și Castelul Peleș", text: "Castelul regal, Mănăstirea Sinaia și telecabina spre munte.", distance: "33 km, aprox. 50 min" },
-        { name: "Bușteni, Babele și Sfinxul", text: "Cu telecabina din Bușteni urci pe Platoul Bucegi, la peste 2.000 de metri.", distance: "39 km, aprox. 55 min" },
-        { name: "Lacul Bolboci și Cheile Tătarului", text: "Lac de munte și chei de calcar pe drumul spre Padina.", distance: "40 km, aprox. 1 oră" },
-        { name: "Peștera Ialomiței", text: "Peșteră amenajată pentru vizitare, cu un schit chiar la intrare.", distance: "46 km, aprox. 1 oră și 15 min" },
-        { name: "Târgoviște", text: "Fosta capitală a Țării Românești, cu Curtea Domnească și Turnul Chindiei.", distance: "35 km, aprox. 50 min" },
-        { name: "Brașov și Castelul Bran", text: "Centrul vechi al Brașovului și castelul legat de legenda lui Dracula.", distance: "75-80 km, aprox. 1 oră și 45 min" },
-      ],
-      roadNote: "Drumul spre Lacul Bolboci, Padina și Peștera Ialomiței poate fi greu de circulat iarna. Verifică starea lui înainte să pleci.",
-      guidesTitle: "Ghiduri pentru zilele tale aici",
-      readGuide: "Citește ghidul",
     },
     faq: {
       title: "Întrebări frecvente",
@@ -298,7 +279,6 @@ export const content = {
       address: "Comuna Pietroșița, Str. Dealu Frumos nr. 60A, jud. Dâmbovița",
       directions: "Deschide în Google Maps",
       mapTitle: "Pensiunea EdMont pe Google Maps",
-      social: "Ne găsești și pe",
     },
     mobileBar: {
       label: "Contact rapid",
@@ -307,14 +287,6 @@ export const content = {
       book: "Rezervă",
     },
     footer: "Pensiunea EdMont, Pietroșița",
-    footerGuides: "Ghiduri",
-    breadcrumbHome: "Acasă",
-    breadcrumbGuides: "Ghiduri",
-    guideCtaTitle: "Stai la EdMont",
-    guideCtaText: "Nouă camere în liniștea dealurilor din Pietroșița, cu bucătărie comună, terasă și loc de foc. Rezervi direct cu gazdele.",
-    guideCtaButton: "Vezi camerele și rezervă",
-    otherGuides: "Alte ghiduri",
-    atGlance: "Pe scurt",
   },
   en: {
     skip: "Skip to content",
@@ -324,7 +296,6 @@ export const content = {
       rooms: "Rooms",
       events: "Events",
       gallery: "Gallery",
-      around: "Around",
       contact: "Contact",
     },
     header: {
@@ -363,7 +334,7 @@ export const content = {
         text: "For two guests, with a generous double bed.",
         meta: "2 guests, 1 double bed",
         cta: "Choose the double room",
-        alt: "Bright double room at Pensiunea EdMont",
+        alt: "Double room with a queen bed, bedside lamps and an armchair at Pensiunea EdMont",
       },
       triple: {
         title: "Triple room",
@@ -446,30 +417,14 @@ export const content = {
       title: "What a stay at EdMont looks like",
       alt: [
         "Pensiunea EdMont among the green hills of Pietroșița",
-        "Bright double room at Pensiunea EdMont",
-        "EdMont room overlooking the hills",
+        "Double room with a green wall and bedside lamps at Pensiunea EdMont",
+        "Double room with a balcony door at Pensiunea EdMont",
         "Shared kitchen at Pensiunea EdMont",
         "Indoor dining room at Pensiunea EdMont",
-        "Tables set in the EdMont dining room",
-        "View from a balcony at Pensiunea EdMont",
-        "Green-accent double room at Pensiunea EdMont",
+        "Private bathroom with EdMont towels",
+        "Mountain view from a balcony door",
+        "Double room with a large window at Pensiunea EdMont",
       ],
-    },
-    nearby: {
-      title: "Around EdMont",
-      intro:
-        "EdMont is a quiet base for the Bucegi Mountains and the towns around them. Distances are approximate, by car.",
-      places: [
-        { name: "Sinaia and Peleș Castle", text: "The royal castle, Sinaia Monastery and the cable car up the mountain.", distance: "33 km, about 50 min" },
-        { name: "Bușteni, Babele and the Sphinx", text: "The cable car from Bușteni takes you up to the Bucegi Plateau, above 2,000 metres.", distance: "39 km, about 55 min" },
-        { name: "Bolboci Lake and Tătarului Gorges", text: "A mountain lake and limestone gorges on the road to Padina.", distance: "40 km, about 1 hour" },
-        { name: "Ialomița Cave", text: "A show cave with a small monastery right at its entrance.", distance: "46 km, about 1 h 15 min" },
-        { name: "Târgoviște", text: "The old capital of Wallachia, with the Princely Court and Chindia Tower.", distance: "35 km, about 50 min" },
-        { name: "Brașov and Bran Castle", text: "Brașov's old town and the castle tied to the Dracula legend.", distance: "75-80 km, about 1 h 45 min" },
-      ],
-      roadNote: "The road to Bolboci Lake, Padina and Ialomița Cave can be hard to drive in winter. Check it before you set off.",
-      guidesTitle: "Guides for your days here",
-      readGuide: "Read the guide",
     },
     faq: {
       title: "Frequently asked questions",
@@ -591,7 +546,6 @@ export const content = {
       address: "Comuna Pietroșița, Str. Dealu Frumos nr. 60A, Dâmbovița county",
       directions: "Open in Google Maps",
       mapTitle: "Pensiunea EdMont on Google Maps",
-      social: "Find us on",
     },
     mobileBar: {
       label: "Quick contact",
@@ -600,14 +554,6 @@ export const content = {
       book: "Book",
     },
     footer: "Pensiunea EdMont, Pietroșița",
-    footerGuides: "Guides",
-    breadcrumbHome: "Home",
-    breadcrumbGuides: "Guides",
-    guideCtaTitle: "Stay at EdMont",
-    guideCtaText: "Nine rooms in the quiet hills of Pietroșița, with a shared kitchen, a terrace and a fire pit. You book directly with the hosts.",
-    guideCtaButton: "See the rooms and book",
-    otherGuides: "More guides",
-    atGlance: "At a glance",
   },
 };
 
@@ -615,11 +561,11 @@ export type Copy = (typeof content)["ro"];
 
 export const galleryImages = [
   "/images/hero.webp",
-  "/images/room-double.webp",
-  "/images/room-view.webp",
+  "/images/room-bedside.webp",
+  "/images/room-window.webp",
   "/images/kitchen.webp",
   "/images/dining.webp",
-  "/images/dining-detail.webp",
-  "/images/balcony.webp",
-  "/images/room-green.webp",
+  "/images/bathroom.webp",
+  "/images/balcony-view.webp",
+  "/images/room-whole.webp",
 ];

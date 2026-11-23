@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { content, type Language } from "./content";
-import { guidePath, guides, type Guide } from "./guides";
 import { absolute, basePath, homePath, siteUrl } from "./site";
 import base from "./structured-data.json";
 
 const googleMaps = "https://maps.google.com/?cid=6745088281732642513";
-const ogImage: Record<Language, string> = { ro: "/og-edmont-ro.jpg", en: "/og-edmont-en.jpg" };
+const ogImage: Record<Language, string> = { ro: "/og-edmont-aerial-ro.jpg", en: "/og-edmont-aerial-en.jpg" };
 const ogImageAlt: Record<Language, string> = {
-  ro: "Priveliște spre munți de pe balconul Pensiunii EdMont, Pietroșița",
-  en: "Mountain view from a balcony at Pensiunea EdMont, Pietroșița",
+  ro: "Pensiunea EdMont între dealurile verzi din Pietroșița, văzută de sus",
+  en: "Pensiunea EdMont among the green hills of Pietroșița, seen from above",
 };
 
 const keywords: Record<Language, string[]> = {
@@ -145,19 +144,6 @@ export function homeMetadata(language: Language): Metadata {
   });
 }
 
-export function guideMetadata(language: Language, guide: Guide): Metadata {
-  const other: Language = language === "ro" ? "en" : "ro";
-  const twin = guides[other].find((item) => item.key === guide.key);
-  return pageMetadata({
-    language,
-    path: guidePath(language, guide.slug),
-    altPath: twin ? guidePath(other, twin.slug) : homePath(other),
-    title: guide.metaTitle,
-    description: guide.description,
-    type: "article",
-  });
-}
-
 const amenities = [
   "Free Wi-Fi",
   "Private parking",
@@ -183,8 +169,8 @@ function lodging(language: Language) {
     url: absolute("/"),
     image: [
       absolute("/images/hero.webp"),
-      absolute("/images/guide-bucegi.webp"),
-      absolute("/images/room-double.webp"),
+      absolute("/images/room-lamps.webp"),
+      absolute("/images/balcony-view.webp"),
       absolute("/images/room-triple.webp"),
       absolute("/images/kitchen.webp"),
       absolute("/images/dining.webp"),
@@ -238,38 +224,6 @@ export function homeSchema(language: Language) {
           name: question,
           acceptedAnswer: { "@type": "Answer", text: answer },
         })),
-      },
-    ],
-  };
-}
-
-export function guideSchema(language: Language, guide: Guide) {
-  const t = content[language];
-  const url = absolute(guidePath(language, guide.slug));
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        "@id": `${url}#article`,
-        headline: guide.title,
-        description: guide.description,
-        image: absolute(guide.image),
-        inLanguage: language,
-        datePublished: "2026-11-23",
-        dateModified: "2026-11-23",
-        mainEntityOfPage: url,
-        author: { "@type": "Organization", name: "Pensiunea EdMont", url: absolute("/") },
-        publisher: { "@id": base["@id"] },
-        about: { "@id": base["@id"] },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: t.breadcrumbHome, item: absolute(homePath(language)) },
-          { "@type": "ListItem", position: 2, name: t.breadcrumbGuides, item: `${absolute(homePath(language))}#imprejurimi` },
-          { "@type": "ListItem", position: 3, name: guide.title, item: url },
-        ],
       },
     ],
   };

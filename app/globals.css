@@ -1229,111 +1229,6 @@ h1 span:nth-child(3) {
   text-underline-offset: 4px;
 }
 
-/* Around EdMont */
-
-.nearby {
-  background: var(--surface);
-}
-
-.place-list {
-  display: grid;
-  gap: 0 48px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.place-list li {
-  align-items: baseline;
-  border-top: 1px solid var(--line-strong);
-  display: flex;
-  gap: 8px 24px;
-  justify-content: space-between;
-  padding: 20px 0 22px;
-}
-
-.place-list h3 {
-  font-size: 1.3rem;
-  margin-bottom: 4px;
-}
-
-.place-list p {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 30em;
-}
-
-.place-distance {
-  color: var(--brand);
-  flex: 0 0 auto;
-  font-size: 14px;
-  font-weight: 600;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.road-note {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 14px;
-  max-width: 48em;
-}
-
-.guides-title {
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  margin: clamp(48px, 6vw, 72px) 0 24px;
-}
-
-.guide-cards {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.guide-card {
-  display: grid;
-  gap: 16px;
-}
-
-.guide-card img {
-  aspect-ratio: 16 / 10;
-  border-radius: 18px;
-  height: auto;
-  object-fit: cover;
-  width: 100%;
-}
-
-.guide-card-copy {
-  display: grid;
-  gap: 6px;
-}
-
-.guide-card-copy strong {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 500;
-  line-height: 1.25;
-}
-
-.guide-card-copy > span {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.guide-card .guide-card-link {
-  color: var(--brand);
-  font-weight: 600;
-  margin-top: 2px;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 5px;
-}
-
-.guide-card:hover .guide-card-link {
-  text-decoration-thickness: 2px;
-}
-
 /* Questions */
 
 .faq {
@@ -1391,153 +1286,6 @@ h1 span:nth-child(3) {
   padding: 0 0 22px;
 }
 
-/* Guide pages */
-
-.guide {
-  padding: 28px var(--pad-x) var(--section-y);
-}
-
-.breadcrumbs {
-  align-items: center;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 14px;
-  gap: 8px;
-  margin-bottom: clamp(24px, 4vw, 40px);
-}
-
-.breadcrumbs a:hover {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.guide-head {
-  margin-bottom: clamp(28px, 4vw, 44px);
-  max-width: 900px;
-}
-
-.guide-head h1 {
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  letter-spacing: -0.02em;
-  line-height: 1.04;
-  margin-bottom: 20px;
-}
-
-.guide-lead {
-  color: var(--muted);
-  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-  line-height: 1.6;
-  max-width: 38em;
-}
-
-.guide-photo {
-  margin: 0 0 clamp(40px, 6vw, 72px);
-}
-
-.guide-photo img {
-  aspect-ratio: 16 / 9;
-  border-radius: var(--radius-panel);
-  height: auto;
-  object-fit: cover;
-  width: 100%;
-}
-
-.guide-layout {
-  align-items: start;
-  display: grid;
-  gap: 40px clamp(40px, 6vw, 88px);
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-}
-
-.guide-body section + section {
-  margin-top: 40px;
-}
-
-.guide-body h2 {
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  margin-bottom: 14px;
-}
-
-.guide-body p {
-  font-size: 1.06rem;
-  line-height: 1.75;
-  max-width: 38em;
-}
-
-.guide-body p + p {
-  margin-top: 14px;
-}
-
-.guide-aside {
-  display: grid;
-  gap: 20px;
-  position: sticky;
-  top: 104px;
-}
-
-.guide-facts {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 24px 26px;
-}
-
-.guide-facts h2,
-.guide-cta h2 {
-  font-size: 1.35rem;
-  margin-bottom: 12px;
-}
-
-.guide-facts dl {
-  margin: 0;
-}
-
-.guide-facts dl > div {
-  border-top: 1px solid var(--line);
-  display: grid;
-  gap: 2px;
-  padding: 12px 0;
-}
-
-.guide-facts dt {
-  font-weight: 600;
-}
-
-.guide-facts dd {
-  color: var(--muted);
-  font-size: 15px;
-  margin: 0;
-}
-
-.guide-cta {
-  background: var(--fir);
-  border-radius: 20px;
-  color: var(--fir-ink);
-  display: grid;
-  gap: 14px;
-  justify-items: start;
-  padding: 26px;
-}
-
-.guide-cta p {
-  color: var(--fir-muted);
-}
-
-.guide-more {
-  margin-top: var(--section-y);
-}
-
-.guide-more h2 {
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  margin-bottom: 24px;
-}
-
-.guide-more .guide-cards {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 /* Contact */
 
 .contact {
@@ -1566,14 +1314,6 @@ h1 span:nth-child(3) {
   color: var(--brand);
   flex: 0 0 auto;
   margin-top: 4px;
-}
-
-.social {
-  align-items: center;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
 }
 
 .map {
@@ -1618,23 +1358,6 @@ h1 span:nth-child(3) {
   width: 100%;
 }
 
-.footer-guides {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-}
-
-.footer-guides > span {
-  color: var(--ink);
-  font-weight: 600;
-}
-
-.footer-guides a:hover {
-  color: var(--ink);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .mobile-bar {
   display: none;
 }
@@ -1661,23 +1384,6 @@ h1 span:nth-child(3) {
 }
 
 @media (max-width: 920px) {
-  .place-list {
-    grid-template-columns: 1fr;
-  }
-
-  .guide-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .guide-layout {
-    grid-template-columns: 1fr;
-  }
-
-  /* On phones the distances and the booking box come before the text. */
-  .guide-aside {
-    order: -1;
-    position: static;
-  }
 
   html {
     scroll-padding-top: 84px;
@@ -1884,23 +1590,6 @@ h1 span:nth-child(3) {
 }
 
 @media (max-width: 640px) {
-  .guide-cards,
-  .guide-more .guide-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .place-list li {
-    flex-direction: column;
-  }
-
-  .place-distance {
-    text-align: left;
-  }
-
-  .guide-photo img {
-    aspect-ratio: 4 / 3;
-    border-radius: 18px;
-  }
 
   :root {
     --section-y: 56px;
@@ -1960,8 +1649,7 @@ h1 span:nth-child(3) {
 
   /* Photo rows become strips you swipe sideways; the next photo peeks in at the edge. */
   .shared-grid,
-  .gallery-grid,
-  .nearby .guide-cards {
+  .gallery-grid {
     display: flex;
     gap: 12px;
     margin-inline: calc(-1 * var(--gutter));
@@ -1974,18 +1662,12 @@ h1 span:nth-child(3) {
   }
 
   .shared-grid::-webkit-scrollbar,
-  .gallery-grid::-webkit-scrollbar,
-  .nearby .guide-cards::-webkit-scrollbar {
+  .gallery-grid::-webkit-scrollbar {
     display: none;
   }
 
   .shared-item {
     display: block;
-    flex: 0 0 82%;
-    scroll-snap-align: start;
-  }
-
-  .nearby .guide-card {
     flex: 0 0 82%;
     scroll-snap-align: start;
   }

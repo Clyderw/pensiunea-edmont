@@ -6,7 +6,6 @@ import { useEffect, useState, type MouseEvent } from "react";
 import BookingForm from "./BookingForm";
 import { emptyDraft, isoDate, whatsappLink, type BookingDraft } from "./booking";
 import { contact, content, galleryImages, type Language, type Stay } from "./content";
-import { guidePath, guides } from "./guides";
 import { ChatIcon, CheckIcon, MailIcon, PeakIcon, PhoneIcon, PinIcon } from "./icons";
 import MobileBar from "./MobileBar";
 import SiteFooter from "./SiteFooter";
@@ -107,11 +106,11 @@ export default function HomePage({ language }: { language: Language }) {
         <div className="room-grid">
           <article className="room">
             <img
-              {...photo("/images/room-double.webp")}
+              {...photo("/images/room-lamps.webp")}
               sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) 50vw, 600px"
               alt={t.rooms.double.alt}
               width="1280"
-              height="853"
+              height="960"
               loading="lazy"
               decoding="async"
             />
@@ -235,47 +234,6 @@ export default function HomePage({ language }: { language: Language }) {
         </ul>
       </section>
 
-      <section className="section nearby" id="imprejurimi">
-        <div className="section-head">
-          <h2>{t.nearby.title}</h2>
-          <p>{t.nearby.intro}</p>
-        </div>
-        <ul className="place-list">
-          {t.nearby.places.map((place) => (
-            <li key={place.name}>
-              <div>
-                <h3>{place.name}</h3>
-                <p>{place.text}</p>
-              </div>
-              <span className="place-distance">{place.distance}</span>
-            </li>
-          ))}
-        </ul>
-        <p className="road-note">{t.nearby.roadNote}</p>
-
-        <h3 className="guides-title">{t.nearby.guidesTitle}</h3>
-        <div className="guide-cards">
-          {guides[language].map((guide) => (
-            <a className="guide-card" key={guide.key} href={assetPath(guidePath(language, guide.slug))}>
-              <img
-                {...photo(guide.image)}
-                sizes="(max-width: 640px) 84vw, (max-width: 920px) 50vw, 400px"
-                alt=""
-                width="1600"
-                height="1000"
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="guide-card-copy">
-                <strong>{guide.title}</strong>
-                <span>{guide.card}</span>
-                <span className="guide-card-link">{t.nearby.readGuide}</span>
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       <section className="section gallery" id="galerie">
         <h2>{t.gallery.title}</h2>
         <div className="gallery-grid">
@@ -286,7 +244,7 @@ export default function HomePage({ language }: { language: Language }) {
                 sizes={index === 0 ? "(max-width: 640px) 84vw, (max-width: 920px) 100vw, 720px" : "(max-width: 640px) 84vw, (max-width: 920px) 50vw, 620px"}
                 alt={t.gallery.alt[index]}
                 width="1280"
-                height="900"
+                height="853"
                 loading="lazy"
                 decoding="async"
               />
@@ -375,11 +333,6 @@ export default function HomePage({ language }: { language: Language }) {
           <a className="btn btn-secondary" href={contact.maps} target="_blank" rel="noreferrer">
             {t.contact.directions}
           </a>
-          <p className="social">
-            <span>{t.contact.social}</span>
-            <a className="text-link" href={contact.facebook} target="_blank" rel="noreferrer">Facebook</a>
-            <a className="text-link" href={contact.instagram} target="_blank" rel="noreferrer">Instagram</a>
-          </p>
         </div>
         <div className="map">
           <iframe
@@ -394,7 +347,7 @@ export default function HomePage({ language }: { language: Language }) {
         </div>
       </section>
 
-      <SiteFooter language={language} t={t} />
+      <SiteFooter t={t} />
       <MobileBar language={language} bookHref="#rezervare" />
     </main>
   );

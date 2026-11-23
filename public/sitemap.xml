@@ -6,9 +6,13 @@
   <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/"/>
   <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/"/>
   <image:image><image:loc>https://edmont.ro/images/hero.webp</image:loc></image:image>
-  <image:image><image:loc>https://edmont.ro/images/guide-bucegi.webp</image:loc></image:image>
-  <image:image><image:loc>https://edmont.ro/images/room-double.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-lamps.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-bedside.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-window.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-whole.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/room-triple.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/bathroom.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/balcony-view.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/kitchen.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/dining.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/terrace-view.webp</image:loc></image:image>
@@ -22,68 +26,18 @@
   <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/"/>
   <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/"/>
   <image:image><image:loc>https://edmont.ro/images/hero.webp</image:loc></image:image>
-  <image:image><image:loc>https://edmont.ro/images/guide-bucegi.webp</image:loc></image:image>
-  <image:image><image:loc>https://edmont.ro/images/room-double.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-lamps.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-bedside.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-window.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/room-whole.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/room-triple.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/bathroom.webp</image:loc></image:image>
+  <image:image><image:loc>https://edmont.ro/images/balcony-view.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/kitchen.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/dining.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/terrace-view.webp</image:loc></image:image>
   <image:image><image:loc>https://edmont.ro/images/event-room.webp</image:loc></image:image>
   <lastmod>2026-11-23</lastmod>
   <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/ghid/bucegi-valea-ialomitei/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/bucegi-valea-ialomitei/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/bucegi-ialomita-valley/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/bucegi-valea-ialomitei/"/>
-  <image:image><image:loc>https://edmont.ro/images/guide-bucegi.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/en/guide/bucegi-ialomita-valley/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/bucegi-valea-ialomitei/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/bucegi-ialomita-valley/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/bucegi-valea-ialomitei/"/>
-  <image:image><image:loc>https://edmont.ro/images/guide-bucegi.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/ghid/excursii-sinaia-targoviste-brasov/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/excursii-sinaia-targoviste-brasov/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/day-trips-sinaia-targoviste-brasov/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/excursii-sinaia-targoviste-brasov/"/>
-  <image:image><image:loc>https://edmont.ro/images/guide-day-trips.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/en/guide/day-trips-sinaia-targoviste-brasov/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/excursii-sinaia-targoviste-brasov/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/day-trips-sinaia-targoviste-brasov/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/excursii-sinaia-targoviste-brasov/"/>
-  <image:image><image:loc>https://edmont.ro/images/guide-day-trips.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/ghid/retreat-team-building-langa-bucuresti/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/retreat-team-building-langa-bucuresti/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/team-retreat-near-bucharest/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/retreat-team-building-langa-bucuresti/"/>
-  <image:image><image:loc>https://edmont.ro/images/event-room.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
-</url>
-<url>
-  <loc>https://edmont.ro/en/guide/team-retreat-near-bucharest/</loc>
-  <xhtml:link rel="alternate" hreflang="ro-RO" href="https://edmont.ro/ghid/retreat-team-building-langa-bucuresti/"/>
-  <xhtml:link rel="alternate" hreflang="en" href="https://edmont.ro/en/guide/team-retreat-near-bucharest/"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://edmont.ro/ghid/retreat-team-building-langa-bucuresti/"/>
-  <image:image><image:loc>https://edmont.ro/images/event-room.webp</image:loc></image:image>
-  <lastmod>2026-11-23</lastmod>
-  <priority>0.7</priority>
 </url>
 </urlset>

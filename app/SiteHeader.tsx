@@ -49,7 +49,6 @@ export default function SiteHeader({ language, onHome, altHref }: Props) {
         <a href={`${base}#despre`} onClick={closeMenu}>{t.nav.about}</a>
         <a href={`${base}#camere`} onClick={closeMenu}>{t.nav.rooms}</a>
         <a href={`${base}#evenimente`} onClick={closeMenu}>{t.nav.events}</a>
-        <a href={`${base}#imprejurimi`} onClick={closeMenu}>{t.nav.around}</a>
         <a href={`${base}#contact`} onClick={closeMenu}>{t.nav.contact}</a>
       </nav>
 
