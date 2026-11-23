@@ -4,7 +4,7 @@
   "@id": "https://edmont.ro/#pensiunea-edmont",
   "name": "Pensiunea EdMont",
   "alternateName": "EdMont Resort",
-  "description": "Pensiune de 3 stele în Pietroșița, cu 9 camere pentru până la 20 de oaspeți, spații comune, retreaturi și evenimente.",
+  "description": "Pensiune cu 9 camere în Pietroșița, Dâmbovița, pentru până la 20 de oaspeți, cu spații comune, retreaturi și evenimente în natură.",
   "slogan": "Momente. Împreună. În natură.",
   "url": "https://edmont.ro",
   "logo": "https://edmont.ro/images/logo.webp",
@@ -30,11 +30,6 @@
     "longitude": 25.4302592
   },
   "hasMap": "https://www.google.com/maps/search/?api=1&query=45.1832007%2C25.4302592",
-  "starRating": {
-    "@type": "Rating",
-    "ratingValue": 3,
-    "bestRating": 5
-  },
   "numberOfRooms": 9,
   "occupancy": {
     "@type": "QuantitativeValue",
